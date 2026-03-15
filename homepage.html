@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEU Library - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #081525;
+      overflow: hidden;
+    }
+
+    /* background image */
+    .bg-image {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: url('https://media.licdn.com/dms/image/v2/C561BAQGUxB_pssZkJA/company-background_10000/company-background_10000/0/1591598531597/new_era_university_official_cover?e=2147483647&v=beta&t=F_JgSz6bKmQ4QdmSivXkthtoQ-7j0KNvpoWiwut8y8A');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.15);
+    }
+
+    /* navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 36px;
+      background: rgba(8, 21, 37, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 10;
+    }
+
+    .site-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .site-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .site-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .site-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .site-name span {
+      color: #4caf80;
+    }
+
+    .logout-btn {
+      display: inline-block;
+      padding: 10px 28px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.70);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .logout-btn:hover {
+      border-color: rgba(255, 255, 255, 0.40);
+      color: #fff;
+    }
+
+    /* main content */
+    .main-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 24px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .school-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 0 auto 28px;
+    }
+
+    .school-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .school-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #4caf80;
+      margin-bottom: 16px;
+    }
+
+    .main-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 6vw, 58px);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .main-title em {
+      font-style: italic;
+      color: #4caf80;
+    }
+
+    .school-year {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.40);
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-image"></div>
+
+  <nav class="navbar">
+    <a class="site-brand" href="#">
+      <div class="site-logo">
+        <img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" />
+      </div>
+      <span class="site-name">NEU <span>Library</span></span>
+    </a>
+    <a href="auth.html" class="logout-btn">Log Out</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="school-logo">
+      <img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" />
+    </div>
+    <div class="school-label">New Era University</div>
+    <h1 class="main-title">Welcome to NEU <em>Library</em></h1>
+    <div class="school-year">Academic Year 2026 – 2027</div>
+  </div>
+
+</body>
+</html>
