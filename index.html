@@ -290,7 +290,7 @@
       if (error) { msgEl.textContent = error.message; return; }
 
       var { data: profile } = await db.from('profiles').select('role').eq('id', data.user.id).single();
-      window.location.href = (profile && profile.role === 'admin') ? 'admin.html' : 'home.html';
+      window.location.href = (profile && profile.role === 'admin') ? 'admin.html' : 'homepage.html';
     }
 
     /* ── Register ── */
