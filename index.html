@@ -28,17 +28,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .bg-image {
       position: fixed; inset: 0; z-index: 0;
       background-image: url('https://media.licdn.com/dms/image/v2/C561BAQGUxB_pssZkJA/company-background_10000/company-background_10000/0/1591598531597/new_era_university_official_cover?e=2147483647&v=beta&t=F_JgSz6bKmQ4QdmSivXkthtoQ-7j0KNvpoWiwut8y8A');
-      background-size: cover;
-      background-position: center;
+      background-size: cover; background-position: center;
       filter: brightness(0.13);
     }
 
+    /* navbar */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; height: 62px;
       display: flex; align-items: center; padding: 0 36px;
@@ -51,13 +51,15 @@
     .nav-title { font-family: 'DM Serif Display', serif; font-size: 15px; color: #fff; }
     .nav-title span { color: var(--green-light); }
 
+    /* card */
     .card {
       position: relative; z-index: 2;
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 40px 36px 36px;
-      width: min(420px, 92vw);
+      width: min(440px, 92vw);
+      margin-top: 62px;
       animation: fadeUp 0.7s ease both;
       box-shadow: 0 32px 80px rgba(0,0,0,0.5);
     }
@@ -67,40 +69,91 @@
       background: linear-gradient(90deg, var(--green-light), transparent);
     }
 
-    .card-logo { width: 52px; height: 52px; border-radius: 12px; overflow: hidden; margin: 0 auto 20px; }
+    .card-logo { width: 52px; height: 52px; border-radius: 12px; overflow: hidden; margin: 0 auto 20px; display: block; }
     .card-logo img { width: 100%; height: 100%; object-fit: contain; }
 
-    .card h1 { font-family: 'DM Serif Display', serif; font-size: 26px; color: #fff; text-align: center; margin-bottom: 6px; }
-    .card h1 em { font-style: italic; color: var(--green-light); }
-    .card p  { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 28px; }
+    /* toggle tabs */
+    .auth-tabs {
+      display: flex;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 28px;
+    }
+    .auth-tab {
+      flex: 1; padding: 9px; border: none; background: transparent;
+      border-radius: 7px; font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px; font-weight: 500; color: var(--muted);
+      cursor: pointer; transition: background .2s, color .2s;
+    }
+    .auth-tab.active {
+      background: var(--green);
+      color: #fff;
+    }
 
+    /* form panels */
+    .form-panel { display: none; animation: fadeUp .3s ease both; }
+    .form-panel.active { display: block; }
+
+    .panel-heading { text-align: center; margin-bottom: 24px; }
+    .panel-heading h1 { font-family: 'DM Serif Display', serif; font-size: 24px; color: #fff; margin-bottom: 4px; }
+    .panel-heading h1 em { font-style: italic; color: var(--green-light); }
+    .panel-heading p { font-size: 13px; color: var(--muted); }
+
+    /* fields */
     .field { margin-bottom: 14px; }
-    .field label { display: block; font-size: 11px; font-weight: 600; letter-spacing: .9px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-    .field input {
-      width: 100%; background: var(--input-bg); border: 1px solid var(--input-border);
-      border-radius: 9px; padding: 11px 14px; font-size: 13.5px; color: #fff;
-      font-family: 'DM Sans', sans-serif; outline: none; transition: border-color .18s;
+    .field label {
+      display: block; font-size: 11px; font-weight: 600;
+      letter-spacing: .9px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .field input,
+    .field select {
+      width: 100%; background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 9px; padding: 11px 14px;
+      font-size: 13.5px; color: #fff;
+      font-family: 'DM Sans', sans-serif; outline: none;
+      transition: border-color .18s; -webkit-appearance: none;
     }
     .field input::placeholder { color: rgba(255,255,255,0.2); }
-    .field input:focus { border-color: var(--green-light); }
+    .field input:focus,
+    .field select:focus { border-color: var(--green-light); }
+    .field select option { background: #0d1e30; }
 
-    .btn-login {
-      width: 100%; padding: 13px; background: var(--green); border: none; border-radius: 10px;
-      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #fff;
-      cursor: pointer; margin-top: 8px; transition: background .18s, box-shadow .18s;
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* submit btn */
+    .btn-submit {
+      width: 100%; padding: 13px; background: var(--green);
+      border: none; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+      color: #fff; cursor: pointer; margin-top: 6px;
+      transition: background .18s, box-shadow .18s;
     }
-    .btn-login:hover { background: var(--green-dark); box-shadow: 0 6px 24px rgba(46,125,82,0.35); }
-    .btn-login:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+    .btn-submit:hover { background: var(--green-dark); box-shadow: 0 6px 24px rgba(46,125,82,0.35); }
+    .btn-submit:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
 
-    .error-msg { font-size: 12.5px; color: #ef9a9a; margin-top: 12px; text-align: center; min-height: 18px; }
+    /* messages */
+    .msg { font-size: 12.5px; margin-top: 12px; text-align: center; min-height: 18px; }
+    .msg.error   { color: #ef9a9a; }
+    .msg.success { color: var(--green-light); }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 32px 22px 28px; }
+      .navbar { padding: 0 16px; }
+      .field-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+
   <div class="bg-image"></div>
 
   <nav class="navbar">
@@ -111,21 +164,94 @@
   </nav>
 
   <div class="card">
-    <div class="card-logo"><img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" /></div>
-    <h1>Sign in to <em>Library</em></h1>
-    <p>New Era University — Library Portal</p>
+    <a class="card-logo" href="#">
+      <img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" />
+    </a>
 
-    <div class="field">
-      <label>Email</label>
-      <input type="email" id="email" placeholder="you@neu.edu.ph" />
-    </div>
-    <div class="field">
-      <label>Password</label>
-      <input type="password" id="password" placeholder="••••••••" onkeydown="if(event.key==='Enter') handleLogin()" />
+    <!-- Toggle tabs -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="showPanel('login')">Sign In</button>
+      <button class="auth-tab"        onclick="showPanel('register')">Register</button>
     </div>
 
-    <button class="btn-login" id="login-btn" onclick="handleLogin()">Sign In</button>
-    <div class="error-msg" id="error-msg"></div>
+    <!-- LOGIN PANEL -->
+    <div class="form-panel active" id="panel-login">
+      <div class="panel-heading">
+        <h1>Welcome <em>back</em></h1>
+        <p>Sign in to your NEU Library account</p>
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="you@neu.edu.ph" onkeydown="if(event.key==='Enter') handleLogin()" />
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="••••••••" onkeydown="if(event.key==='Enter') handleLogin()" />
+      </div>
+
+      <button class="btn-submit" id="login-btn" onclick="handleLogin()">Sign In</button>
+      <div class="msg error" id="login-msg"></div>
+    </div>
+
+    <!-- REGISTER PANEL -->
+    <div class="form-panel" id="panel-register">
+      <div class="panel-heading">
+        <h1>Create <em>Account</em></h1>
+        <p>Register for your NEU Library account</p>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>First Name</label>
+          <input type="text" id="reg-firstname" placeholder="Juan" />
+        </div>
+        <div class="field">
+          <label>Last Name</label>
+          <input type="text" id="reg-lastname" placeholder="dela Cruz" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="you@neu.edu.ph" />
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="reg-password" placeholder="Min. 6 characters" />
+      </div>
+
+      <div class="field">
+        <label>College / Department</label>
+        <select id="reg-college">
+          <option value="" disabled selected>Select your college</option>
+          <option value="CAS">CAS – College of Arts and Sciences</option>
+          <option value="CBE">CBE – College of Business and Entrepreneurship</option>
+          <option value="CEd">CEd – College of Education</option>
+          <option value="CEng">CEng – College of Engineering</option>
+          <option value="CITE">CITE – College of Information Technology and Engineering</option>
+          <option value="CN">CN – College of Nursing</option>
+          <option value="CPT">CPT – College of Physical Therapy</option>
+          <option value="SHS">SHS – Senior High School</option>
+          <option value="Staff / Admin">Staff / Admin</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Role</label>
+        <select id="reg-role">
+          <option value="" disabled selected>Select your role</option>
+          <option value="student">Student</option>
+          <option value="faculty">Faculty</option>
+          <option value="staff">Staff</option>
+        </select>
+      </div>
+
+      <button class="btn-submit" id="reg-btn" onclick="handleRegister()">Create Account</button>
+      <div class="msg" id="reg-msg"></div>
+    </div>
+
   </div>
 
   <script>
@@ -133,14 +259,27 @@
     var SUPA_KEY = 'sb_publishable_nAdhpbEdXTnEqaRv2JAzvg_5k_KUPGP';
     var db = supabase.createClient(SUPA_URL, SUPA_KEY);
 
-    async function handleLogin() {
-      var email    = document.getElementById('email').value.trim();
-      var password = document.getElementById('password').value;
-      var btn      = document.getElementById('login-btn');
-      var errEl    = document.getElementById('error-msg');
-      errEl.textContent = '';
+    /* ── Panel toggle ── */
+    function showPanel(name) {
+      document.querySelectorAll('.auth-tab').forEach(function(t, i) {
+        t.classList.toggle('active', (i === 0 && name === 'login') || (i === 1 && name === 'register'));
+      });
+      document.getElementById('panel-login').classList.toggle('active',    name === 'login');
+      document.getElementById('panel-register').classList.toggle('active', name === 'register');
+      document.getElementById('login-msg').textContent = '';
+      document.getElementById('reg-msg').textContent   = '';
+      document.getElementById('reg-msg').className     = 'msg';
+    }
 
-      if (!email || !password) { errEl.textContent = 'Please enter your email and password.'; return; }
+    /* ── Login ── */
+    async function handleLogin() {
+      var email    = document.getElementById('login-email').value.trim();
+      var password = document.getElementById('login-password').value;
+      var btn      = document.getElementById('login-btn');
+      var msgEl    = document.getElementById('login-msg');
+      msgEl.textContent = '';
+
+      if (!email || !password) { msgEl.textContent = 'Please enter your email and password.'; return; }
 
       btn.disabled = true; btn.textContent = 'Signing in…';
 
@@ -148,17 +287,69 @@
 
       btn.disabled = false; btn.textContent = 'Sign In';
 
-      if (error) { errEl.textContent = error.message; return; }
+      if (error) { msgEl.textContent = error.message; return; }
 
       var { data: profile } = await db.from('profiles').select('role').eq('id', data.user.id).single();
-
-      if (profile && profile.role === 'admin') {
-        window.location.href = 'admin.html';
-      } else {
-        window.location.href = 'home.html';
-      }
+      window.location.href = (profile && profile.role === 'admin') ? 'admin.html' : 'home.html';
     }
 
+    /* ── Register ── */
+    async function handleRegister() {
+      var firstName = document.getElementById('reg-firstname').value.trim();
+      var lastName  = document.getElementById('reg-lastname').value.trim();
+      var email     = document.getElementById('reg-email').value.trim();
+      var password  = document.getElementById('reg-password').value;
+      var college   = document.getElementById('reg-college').value;
+      var role      = document.getElementById('reg-role').value;
+      var btn       = document.getElementById('reg-btn');
+      var msgEl     = document.getElementById('reg-msg');
+
+      msgEl.textContent = ''; msgEl.className = 'msg';
+
+      if (!firstName || !lastName) { msgEl.classList.add('error'); msgEl.textContent = 'Please enter your full name.'; return; }
+      if (!email)    { msgEl.classList.add('error'); msgEl.textContent = 'Please enter your email.'; return; }
+      if (!password || password.length < 6) { msgEl.classList.add('error'); msgEl.textContent = 'Password must be at least 6 characters.'; return; }
+      if (!college)  { msgEl.classList.add('error'); msgEl.textContent = 'Please select your college or department.'; return; }
+      if (!role)     { msgEl.classList.add('error'); msgEl.textContent = 'Please select your role.'; return; }
+
+      btn.disabled = true; btn.textContent = 'Creating account…';
+
+      var { data, error } = await db.auth.signUp({ email: email, password: password });
+
+      if (error) {
+        btn.disabled = false; btn.textContent = 'Create Account';
+        msgEl.classList.add('error'); msgEl.textContent = error.message; return;
+      }
+
+      var fullName = firstName + ' ' + lastName;
+
+      var { error: profileError } = await db.from('profiles').upsert({
+        id:        data.user.id,
+        full_name: fullName,
+        role:      role,
+        college:   college
+      });
+
+      btn.disabled = false; btn.textContent = 'Create Account';
+
+      if (profileError) {
+        msgEl.classList.add('error'); msgEl.textContent = profileError.message; return;
+      }
+
+      msgEl.classList.add('success');
+      msgEl.textContent = '✓ Account created! You can now sign in.';
+
+      document.getElementById('reg-firstname').value = '';
+      document.getElementById('reg-lastname').value  = '';
+      document.getElementById('reg-email').value     = '';
+      document.getElementById('reg-password').value  = '';
+      document.getElementById('reg-college').selectedIndex = 0;
+      document.getElementById('reg-role').selectedIndex    = 0;
+
+      setTimeout(function() { showPanel('login'); }, 2000);
+    }
+
+    /* ── Auto-redirect if already logged in ── */
     (async function checkSession() {
       var { data: { session } } = await db.auth.getSession();
       if (!session) return;
