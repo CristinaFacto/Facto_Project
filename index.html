@@ -354,7 +354,7 @@
       var { data: { session } } = await db.auth.getSession();
       if (!session) return;
       var { data: profile } = await db.from('profiles').select('role').eq('id', session.user.id).single();
-      window.location.href = (profile && profile.role === 'admin') ? 'admin.html' : 'home.html';
+      window.location.href = (profile && profile.role === 'admin') ? 'admin.html' : 'homepage.html';
     })();
   </script>
 </body>
