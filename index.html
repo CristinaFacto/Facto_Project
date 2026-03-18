@@ -4,741 +4,167 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEU Library - Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --green: #2e7d52;
-      --green-dark: #256645;
-      --blue: #42a5f5;
-      --card-bg: #0e1f33;
-      --input-bg: rgba(255, 255, 255, 0.07);
-      --input-border: rgba(255, 255, 255, 0.14);
-      --gray-text: rgba(255, 255, 255, 0.48);
+      --green-dark: #1f5c3a;
+      --green-light: #4caf80;
+      --bg: #081525;
+      --card-bg: #0d1e30;
+      --border: rgba(255,255,255,0.08);
+      --muted: rgba(255,255,255,0.42);
+      --input-bg: rgba(255,255,255,0.05);
+      --input-border: rgba(255,255,255,0.11);
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       min-height: 100vh;
+      background-color: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #081525;
+      overflow: hidden;
     }
 
-    .bg-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background-image: url('https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/477579626_122108352272743934_80451274266931311_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=2a1932&_nc_eui2=AeFyZwIwgtViJCMy2J6O7hmfmfYDj1U4U5CZ9gOPVThTkCzSwUgeI6I9R9NPckGCkFdAtUbbWy5Vrl0Fce6mrFMe&_nc_ohc=d46thpZOUxAQ7kNvwHwcinm&_nc_oc=Adl0xD0B5Z7G0rMyRnEVR2aOJLhQTnIfgITEM2b5ifXYZ8W9zUvSk8GKMTbqY8lPCH8&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=TXQM_neduF7SDoxkA6-vog&_nc_ss=8&oh=00_AfxbLy76P_6rWbjToop7NR1I6QUi-BUWsLtik-3wfbxjZQ&oe=69BBD6BC');
+    .bg-image {
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url('https://media.licdn.com/dms/image/v2/C561BAQGUxB_pssZkJA/company-background_10000/company-background_10000/0/1591598531597/new_era_university_official_cover?e=2147483647&v=beta&t=F_JgSz6bKmQ4QdmSivXkthtoQ-7j0KNvpoWiwut8y8A');
       background-size: cover;
       background-position: center;
-      filter: brightness(0.30);
+      filter: brightness(0.13);
     }
+
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; height: 62px;
+      display: flex; align-items: center; padding: 0 36px;
+      background: rgba(8,21,37,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border); z-index: 10;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo  { width: 32px; height: 32px; border-radius: 7px; overflow: hidden; }
+    .nav-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .nav-title { font-family: 'DM Serif Display', serif; font-size: 15px; color: #fff; }
+    .nav-title span { color: var(--green-light); }
 
     .card {
-      position: relative;
-      z-index: 10;
-      width: min(440px, 92vw);
+      position: relative; z-index: 2;
       background: var(--card-bg);
-      border-radius: 12px;
-      padding: 36px 38px;
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px 36px;
+      width: min(420px, 92vw);
+      animation: fadeUp 0.7s ease both;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 36px; right: 36px;
+      height: 2px; border-radius: 0 0 2px 2px;
+      background: linear-gradient(90deg, var(--green-light), transparent);
     }
 
-    /* brand */
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      margin-bottom: 26px;
-    }
+    .card-logo { width: 52px; height: 52px; border-radius: 12px; overflow: hidden; margin: 0 auto 20px; }
+    .card-logo img { width: 100%; height: 100%; object-fit: contain; }
 
-    .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
+    .card h1 { font-family: 'DM Serif Display', serif; font-size: 26px; color: #fff; text-align: center; margin-bottom: 6px; }
+    .card h1 em { font-style: italic; color: var(--green-light); }
+    .card p  { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 28px; }
 
-    .brand-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 11px; font-weight: 600; letter-spacing: .9px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .field input {
+      width: 100%; background: var(--input-bg); border: 1px solid var(--input-border);
+      border-radius: 9px; padding: 11px 14px; font-size: 13.5px; color: #fff;
+      font-family: 'DM Sans', sans-serif; outline: none; transition: border-color .18s;
     }
+    .field input::placeholder { color: rgba(255,255,255,0.2); }
+    .field input:focus { border-color: var(--green-light); }
 
-    .brand-text {
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.3;
+    .btn-login {
+      width: 100%; padding: 13px; background: var(--green); border: none; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #fff;
+      cursor: pointer; margin-top: 8px; transition: background .18s, box-shadow .18s;
     }
+    .btn-login:hover { background: var(--green-dark); box-shadow: 0 6px 24px rgba(46,125,82,0.35); }
+    .btn-login:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
 
-    .brand-text span {
-      display: block;
-      font-size: 10.5px;
-      font-weight: 400;
-      color: var(--gray-text);
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-    }
+    .error-msg { font-size: 12.5px; color: #ef9a9a; margin-top: 12px; text-align: center; min-height: 18px; }
 
-    .divider {
-      height: 1px;
-      background: rgba(255, 255, 255, 0.08);
-      margin-bottom: 24px;
-    }
-
-    /* tabs */
-    .tab-row {
-      display: flex;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-      margin-bottom: 24px;
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: 9px 0;
-      text-align: center;
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--gray-text);
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .tab-btn.active {
-      color: #fff;
-      border-bottom-color: var(--green);
-    }
-
-    .tab-btn:hover:not(.active) {
-      color: rgba(255, 255, 255, 0.70);
-    }
-
-    .form-panel {
-      display: none;
-      flex-direction: column;
-    }
-
-    .form-panel.active {
-      display: flex;
-    }
-
-    .form-heading {
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .form-note {
-      font-size: 12.5px;
-      color: var(--gray-text);
-      margin-bottom: 22px;
-    }
-
-    .form-note a {
-      color: var(--blue);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    /* form fields */
-    .field {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 16px;
-    }
-
-    .field label {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--gray-text);
-      letter-spacing: 0.7px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .field input,
-    .field select {
-      background: var(--input-bg);
-      border: 1px solid var(--input-border);
-      border-radius: 7px;
-      padding: 10px 13px;
-      font-size: 13.5px;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-      -webkit-appearance: none;
-      width: 100%;
-      transition: border-color 0.18s;
-    }
-
-    .field select option {
-      background: #0e1f33;
-      color: #fff;
-    }
-
-    .field select optgroup {
-      background: #0e1f33;
-      color: rgba(255, 255, 255, 0.60);
-      font-style: normal;
-      font-weight: 600;
-    }
-
-    .field input::placeholder {
-      color: rgba(255, 255, 255, 0.22);
-    }
-
-    .field input:focus,
-    .field select:focus {
-      border-color: rgba(255, 255, 255, 0.35);
-    }
-
-    /* password toggle */
-    .pw-field {
-      position: relative;
-    }
-
-    .pw-field input {
-      padding-right: 48px;
-    }
-
-    .show-pw {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: rgba(255, 255, 255, 0.38);
-      font-size: 11px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      padding: 0;
-      line-height: 1;
-    }
-
-    .show-pw:hover {
-      color: rgba(255, 255, 255, 0.70);
-    }
-
-    /* dropdown arrow */
-    .select-field {
-      position: relative;
-    }
-
-    .select-field::after {
-      content: '▾';
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: rgba(255, 255, 255, 0.38);
-      font-size: 12px;
-      pointer-events: none;
-    }
-
-    .select-field select {
-      width: 100%;
-      cursor: pointer;
-      padding-right: 28px;
-    }
-
-    /* role buttons */
-    .role-title {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--gray-text);
-      letter-spacing: 0.7px;
-      text-transform: uppercase;
-      margin-bottom: 7px;
-    }
-
-    .role-group {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .role-option {
-      flex: 1;
-      padding: 9px 6px;
-      background: transparent;
-      border: 1px solid var(--input-border);
-      border-radius: 7px;
-      font-size: 12.5px;
-      font-weight: 500;
-      font-family: 'Inter', sans-serif;
-      color: rgba(255, 255, 255, 0.42);
-      cursor: pointer;
-      transition: border-color 0.18s, color 0.18s;
-    }
-
-    .role-option.selected {
-      border-color: var(--green);
-      color: #4caf80;
-    }
-
-    /* terms checkbox */
-    .terms-row {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 20px;
-    }
-
-    .terms-row input[type="checkbox"] {
-      width: 15px;
-      height: 15px;
-      accent-color: var(--green);
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .terms-row label {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.50);
-      cursor: pointer;
-    }
-
-    .terms-row a {
-      color: var(--blue);
-      text-decoration: none;
-    }
-
-    .forgot-link {
-      text-align: right;
-      margin-bottom: 16px;
-    }
-
-    .forgot-link a {
-      font-size: 12px;
-      color: var(--blue);
-      text-decoration: none;
-    }
-
-    /* submit button */
-    .submit-btn {
-      width: 100%;
-      padding: 11px;
-      background: var(--green);
-      border: none;
-      border-radius: 7px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.18s, opacity 0.18s;
-    }
-
-    .submit-btn:hover {
-      background: var(--green-dark);
-    }
-
-    .submit-btn:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-    }
-
-    /* toast */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(70px);
-      background: #1b3a28;
-      border: 1px solid var(--green);
-      color: #fff;
-      padding: 11px 24px;
-      border-radius: 7px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 13px;
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 999;
-      white-space: nowrap;
-    }
-
-    .toast.error {
-      background: #3a1b1b;
-      border-color: #c0392b;
-    }
-
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
-
-    @media (max-width: 480px) {
-      .card { padding: 28px 20px; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
+  <div class="bg-image"></div>
 
-  <div class="bg-overlay"></div>
+  <nav class="navbar">
+    <a class="nav-brand" href="#">
+      <div class="nav-logo"><img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" /></div>
+      <span class="nav-title">NEU <span>Library</span></span>
+    </a>
+  </nav>
 
   <div class="card">
+    <div class="card-logo"><img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" /></div>
+    <h1>Sign in to <em>Library</em></h1>
+    <p>New Era University — Library Portal</p>
 
-    <div class="brand">
-      <div class="brand-logo">
-        <img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" />
-      </div>
-      <div class="brand-text">
-        New Era University
-        <span>Library</span>
-      </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="email" placeholder="you@neu.edu.ph" />
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="••••••••" onkeydown="if(event.key==='Enter') handleLogin()" />
     </div>
 
-    <div class="divider"></div>
-
-    <div class="tab-row">
-      <button class="tab-btn active" onclick="showTab('login')">Log In</button>
-      <button class="tab-btn" onclick="showTab('register')">Register</button>
-    </div>
-
-    <!-- Login Form -->
-    <div class="form-panel active" id="panel-login">
-      <div class="form-heading">Sign in</div>
-      <div class="form-note">No account? <a href="#" onclick="showTab('register'); return false;">Register here</a></div>
-
-      <div class="field">
-        <label>Institutional Email</label>
-        <input type="email" id="login-email" placeholder="jdoe@neu.edu.ph" />
-      </div>
-
-      <div class="field">
-        <label>Password</label>
-        <div class="pw-field">
-          <input type="password" id="login-pw" placeholder="Enter your password" />
-          <button class="show-pw" onclick="togglePassword('login-pw', this)" type="button">Show</button>
-        </div>
-      </div>
-
-      <div class="forgot-link"><a href="#">Forgot password?</a></div>
-      <button class="submit-btn" id="login-btn" onclick="doLogin()">Log In</button>
-    </div>
-
-    <!-- Register Form -->
-    <div class="form-panel" id="panel-register">
-      <div class="form-heading">Create account</div>
-      <div class="form-note">Already registered? <a href="#" onclick="showTab('login'); return false;">Log in</a></div>
-
-      <div class="role-title">I am a</div>
-      <div class="role-group">
-        <button class="role-option selected" id="role-student" onclick="changeRole('student')">Student</button>
-        <button class="role-option" id="role-faculty" onclick="changeRole('faculty')">Faculty</button>
-      </div>
-
-      <div class="field">
-        <label>Full Name</label>
-        <input type="text" id="reg-name" placeholder="Juan Dela Cruz" />
-      </div>
-
-      <div class="field">
-        <label>Institutional Email</label>
-        <input type="email" id="reg-email" placeholder="jdelacruz@neu.edu.ph" />
-      </div>
-
-      <div class="field">
-        <label id="college-label">Program / College</label>
-        <div class="select-field">
-          <select id="college-select">
-            <option value="" disabled selected>Select college</option>
-            <optgroup label="── Graduate Programs ──">
-              <option>Graduate School</option>
-              <option>School of Law</option>
-            </optgroup>
-            <optgroup label="── Other Programs ──">
-              <option>Expanded Tertiary Education Equivalency &amp; Accreditation Program (ETEEAP)</option>
-              <option>Alternative Learning System</option>
-              <option>School of International Relations</option>
-            </optgroup>
-            <optgroup label="── Undergraduate Colleges ──">
-              <option>College of Accountancy</option>
-              <option>College of Agriculture</option>
-              <option>College of Arts and Science</option>
-              <option>College of Business Administration</option>
-              <option>College of Communication</option>
-              <option>College of Criminology</option>
-              <option>College of Education</option>
-              <option>College of Engineering and Architecture</option>
-              <option>College of Informatics and Computing Studies</option>
-              <option>College of Medical Technology</option>
-              <option>College of Midwifery</option>
-              <option>College of Music</option>
-              <option>College of Nursing</option>
-              <option>College of Physical Therapy</option>
-              <option>College of Respiratory Therapy</option>
-            </optgroup>
-            <optgroup label="── Basic Education ──">
-              <option>Integrated School</option>
-            </optgroup>
-          </select>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Password</label>
-        <div class="pw-field">
-          <input type="password" id="reg-pw" placeholder="Create a password" />
-          <button class="show-pw" onclick="togglePassword('reg-pw', this)" type="button">Show</button>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Confirm Password</label>
-        <div class="pw-field">
-          <input type="password" id="reg-pw2" placeholder="Re-enter password" />
-          <button class="show-pw" onclick="togglePassword('reg-pw2', this)" type="button">Show</button>
-        </div>
-      </div>
-
-      <div class="terms-row">
-        <input type="checkbox" id="terms" />
-        <label for="terms">I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></label>
-      </div>
-
-      <button class="submit-btn" id="reg-btn" onclick="doRegister()">Create Account</button>
-    </div>
-
+    <button class="btn-login" id="login-btn" onclick="handleLogin()">Sign In</button>
+    <div class="error-msg" id="error-msg"></div>
   </div>
 
-  <div class="toast" id="toast"></div>
-
   <script>
-    var supaUrl = 'https://fqdlpskyavrsoyjbvksi.supabase.co';
-    var supaKey = 'sb_publishable_nAdhpbEdXTnEqaRv2JAzvg_5k_KUPGP';
-    var db = supabase.createClient(supaUrl, supaKey);
+    var SUPA_URL = 'https://fqdlpskyavrsoyjbvksi.supabase.co';
+    var SUPA_KEY = 'sb_publishable_nAdhpbEdXTnEqaRv2JAzvg_5k_KUPGP';
+    var db = supabase.createClient(SUPA_URL, SUPA_KEY);
 
-    var toastTimer;
+    async function handleLogin() {
+      var email    = document.getElementById('email').value.trim();
+      var password = document.getElementById('password').value;
+      var btn      = document.getElementById('login-btn');
+      var errEl    = document.getElementById('error-msg');
+      errEl.textContent = '';
 
-    function showToast(msg, isErr) {
-      var t = document.getElementById('toast');
-      t.textContent = msg;
-      if (isErr) {
-        t.classList.add('error');
+      if (!email || !password) { errEl.textContent = 'Please enter your email and password.'; return; }
+
+      btn.disabled = true; btn.textContent = 'Signing in…';
+
+      var { data, error } = await db.auth.signInWithPassword({ email: email, password: password });
+
+      btn.disabled = false; btn.textContent = 'Sign In';
+
+      if (error) { errEl.textContent = error.message; return; }
+
+      var { data: profile } = await db.from('profiles').select('role').eq('id', data.user.id).single();
+
+      if (profile && profile.role === 'admin') {
+        window.location.href = 'admin.html';
       } else {
-        t.classList.remove('error');
-      }
-      t.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(function() {
-        t.classList.remove('show');
-      }, 3500);
-    }
-
-    function showTab(name) {
-      var tabs = document.querySelectorAll('.tab-btn');
-      var panels = document.querySelectorAll('.form-panel');
-      tabs[0].classList.toggle('active', name === 'login');
-      tabs[1].classList.toggle('active', name === 'register');
-      panels[0].classList.toggle('active', name === 'login');
-      panels[1].classList.toggle('active', name === 'register');
-    }
-
-    function togglePassword(inputId, btn) {
-      var input = document.getElementById(inputId);
-      if (input.type === 'password') {
-        input.type = 'text';
-        btn.textContent = 'Hide';
-      } else {
-        input.type = 'password';
-        btn.textContent = 'Show';
+        window.location.href = 'home.html';
       }
     }
 
-    var deptFaculty = '<option value="" disabled selected>Select department</option>'
-      + '<optgroup label="── Graduate ──">'
-      + '<option>Graduate School</option><option>School of Law</option>'
-      + '</optgroup>'
-      + '<optgroup label="── Undergraduate ──">'
-      + '<option>Dept. of Accountancy</option>'
-      + '<option>Dept. of Agriculture</option>'
-      + '<option>Dept. of Arts and Science</option>'
-      + '<option>Dept. of Business Administration</option>'
-      + '<option>Dept. of Communication</option>'
-      + '<option>Dept. of Criminology</option>'
-      + '<option>Dept. of Education</option>'
-      + '<option>Dept. of Engineering and Architecture</option>'
-      + '<option>Dept. of Informatics and Computing Studies</option>'
-      + '<option>Dept. of Medical Technology</option>'
-      + '<option>Dept. of Midwifery</option>'
-      + '<option>Dept. of Music</option>'
-      + '<option>Dept. of Nursing</option>'
-      + '<option>Dept. of Physical Therapy</option>'
-      + '<option>Dept. of Respiratory Therapy</option>'
-      + '</optgroup>'
-      + '<optgroup label="── Basic Education ──"><option>Integrated School</option></optgroup>';
-
-    var deptStudent = '<option value="" disabled selected>Select college</option>'
-      + '<optgroup label="── Graduate Programs ──">'
-      + '<option>Graduate School</option><option>School of Law</option>'
-      + '</optgroup>'
-      + '<optgroup label="── Other Programs ──">'
-      + '<option>Expanded Tertiary Education Equivalency &amp; Accreditation Program (ETEEAP)</option>'
-      + '<option>Alternative Learning System</option>'
-      + '<option>School of International Relations</option>'
-      + '</optgroup>'
-      + '<optgroup label="── Undergraduate Colleges ──">'
-      + '<option>College of Accountancy</option>'
-      + '<option>College of Agriculture</option>'
-      + '<option>College of Arts and Science</option>'
-      + '<option>College of Business Administration</option>'
-      + '<option>College of Communication</option>'
-      + '<option>College of Criminology</option>'
-      + '<option>College of Education</option>'
-      + '<option>College of Engineering and Architecture</option>'
-      + '<option>College of Informatics and Computing Studies</option>'
-      + '<option>College of Medical Technology</option>'
-      + '<option>College of Midwifery</option>'
-      + '<option>College of Music</option>'
-      + '<option>College of Nursing</option>'
-      + '<option>College of Physical Therapy</option>'
-      + '<option>College of Respiratory Therapy</option>'
-      + '</optgroup>'
-      + '<optgroup label="── Basic Education ──"><option>Integrated School</option></optgroup>';
-
-    function changeRole(role) {
-      document.getElementById('role-student').classList.toggle('selected', role === 'student');
-      document.getElementById('role-faculty').classList.toggle('selected', role === 'faculty');
-
-      var sel = document.getElementById('college-select');
-      var lbl = document.getElementById('college-label');
-
-      if (role === 'faculty') {
-        lbl.textContent = 'Department / College';
-        sel.innerHTML = deptFaculty;
-        document.getElementById('reg-email').placeholder = 'jdoe@faculty.neu.edu.ph';
-      } else {
-        lbl.textContent = 'Program / College';
-        sel.innerHTML = deptStudent;
-        document.getElementById('reg-email').placeholder = 'jdelacruz@neu.edu.ph';
-      }
-    }
-
-    function setBtn(id, disabled, text) {
-      var btn = document.getElementById(id);
-      btn.disabled = disabled;
-      btn.textContent = text;
-    }
-
-    async function doLogin() {
-      var email = document.getElementById('login-email').value.trim();
-      var password = document.getElementById('login-pw').value;
-
-      if (!email || !password) {
-        showToast('Please fill in all fields.', true);
-        return;
-      }
-
-      setBtn('login-btn', true, 'Signing in...');
-
-      var result = await db.auth.signInWithPassword({ email: email, password: password });
-
-      setBtn('login-btn', false, 'Log In');
-
-      if (result.error) {
-        showToast(result.error.message, true);
-        return;
-      }
-
-      showToast('Logged in successfully!');
-
-      var userId = result.data.user.id;
-
-      var profileResult = await db.from('profiles').select('role').eq('id', userId).single();
-
-      var userRole = profileResult.data ? profileResult.data.role : null;
-
-      setTimeout(function() {
-        if (userRole === 'admin') {
-          window.location.href = 'admin.html';
-        } else {
-          window.location.href = 'homepage.html';
-        }
-      }, 1500);
-    }
-
-    async function doRegister() {
-      if (!document.getElementById('terms').checked) {
-        showToast('Please agree to the Terms and Conditions.', true);
-        return;
-      }
-
-      var fullName = document.getElementById('reg-name').value.trim();
-      var email    = document.getElementById('reg-email').value.trim();
-      var college  = document.getElementById('college-select').value;
-      var pw       = document.getElementById('reg-pw').value;
-      var pw2      = document.getElementById('reg-pw2').value;
-
-      var roleBtn = document.querySelector('.role-option.selected');
-      var role = roleBtn ? roleBtn.textContent.toLowerCase() : 'student';
-
-      if (!fullName || !email || !college || !pw || !pw2) {
-        showToast('Please fill in all fields.', true);
-        return;
-      }
-
-      if (pw !== pw2) {
-        showToast('Passwords do not match.', true);
-        return;
-      }
-
-      if (pw.length < 6) {
-        showToast('Password must be at least 6 characters.', true);
-        return;
-      }
-
-      setBtn('reg-btn', true, 'Creating account...');
-
-      var signUpResult = await db.auth.signUp({
-        email: email,
-        password: pw,
-        options: {
-          data: { full_name: fullName }
-        }
-      });
-
-      if (signUpResult.error) {
-        setBtn('reg-btn', false, 'Create Account');
-        showToast(signUpResult.error.message, true);
-        return;
-      }
-
-      var newUser = signUpResult.data.user;
-
-      if (newUser) {
-        await db.from('profiles').upsert({
-          id: newUser.id,
-          full_name: fullName,
-          role: role,
-          college: college
-        });
-      }
-
-      setBtn('reg-btn', false, 'Create Account');
-      showToast('Account created! Check your email to confirm.');
-
-      setTimeout(function() {
-        showTab('login');
-      }, 2500);
-    }
+    (async function checkSession() {
+      var { data: { session } } = await db.auth.getSession();
+      if (!session) return;
+      var { data: profile } = await db.from('profiles').select('role').eq('id', session.user.id).single();
+      window.location.href = (profile && profile.role === 'admin') ? 'admin.html' : 'home.html';
+    })();
   </script>
-
 </body>
 </html>
