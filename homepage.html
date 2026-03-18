@@ -5,162 +5,281 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEU Library - Home</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2e7d52;
+      --green-dark: #1f5c3a;
+      --green-light: #4caf80;
+      --bg: #081525;
+      --card-bg: #0d1e30;
+      --border: rgba(255,255,255,0.08);
+      --muted: rgba(255,255,255,0.42);
+      --input-bg: rgba(255,255,255,0.05);
+      --input-border: rgba(255,255,255,0.11);
     }
 
     body {
       font-family: 'DM Sans', sans-serif;
       min-height: 100vh;
+      background-color: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #081525;
       overflow: hidden;
     }
 
-    /* background image */
+    /* ── background ── */
     .bg-image {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
+      position: fixed; inset: 0; z-index: 0;
       background-image: url('https://media.licdn.com/dms/image/v2/C561BAQGUxB_pssZkJA/company-background_10000/company-background_10000/0/1591598531597/new_era_university_official_cover?e=2147483647&v=beta&t=F_JgSz6bKmQ4QdmSivXkthtoQ-7j0KNvpoWiwut8y8A');
       background-size: cover;
       background-position: center;
-      filter: brightness(0.15);
+      filter: brightness(0.13);
     }
 
-    /* navbar */
+    /* ── navbar ── */
     .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 62px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; height: 62px;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 0 36px;
-      background: rgba(8, 21, 37, 0.85);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      z-index: 10;
+      background: rgba(8,21,37,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border); z-index: 10;
     }
-
-    .site-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    .site-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 7px;
-      overflow: hidden;
-    }
-
-    .site-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .site-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 15px;
-      color: #fff;
-    }
-
-    .site-name span {
-      color: #4caf80;
-    }
-
+    .site-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .site-logo  { width: 32px; height: 32px; border-radius: 7px; overflow: hidden; }
+    .site-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .site-name  { font-family: 'DM Serif Display', serif; font-size: 15px; color: #fff; }
+    .site-name span { color: var(--green-light); }
     .logout-btn {
-      display: inline-block;
-      padding: 10px 28px;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.70);
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
+      padding: 8px 22px; background: transparent;
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.65); cursor: pointer;
+      transition: border-color .2s, color .2s; text-decoration: none;
     }
+    .logout-btn:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
 
-    .logout-btn:hover {
-      border-color: rgba(255, 255, 255, 0.40);
-      color: #fff;
-    }
-
-    /* main content */
+    /* ── welcome ── */
     .main-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 24px;
+      animation: fadeUp 0.9s ease both;
+    }
+    .school-logo { width: 72px; height: 72px; border-radius: 16px; overflow: hidden; margin: 0 auto 28px; }
+    .school-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .school-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--green-light); margin-bottom: 16px; }
+    .main-title   { font-family: 'DM Serif Display', serif; font-size: clamp(32px,6vw,58px); color: #fff; line-height: 1.15; margin-bottom: 12px; }
+    .main-title em { font-style: italic; color: var(--green-light); }
+    .school-year  { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.38); letter-spacing: 1px; margin-bottom: 32px; }
+
+    .greeting {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(76,175,128,0.09); border: 1px solid rgba(76,175,128,0.2);
+      border-radius: 24px; padding: 8px 18px;
+      font-size: 13px; color: var(--green-light);
+      opacity: 0; transition: opacity .5s;
+    }
+    .greeting.visible { opacity: 1; }
+    .greeting .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-light); animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ══════════════════════════════════════
+       VISITOR LOG MODAL
+    ══════════════════════════════════════ */
+    .overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(4,12,22,0.85);
+      backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      width: min(540px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 36px 36px 32px;
       position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 24px;
-      animation: fadeUp 0.8s ease both;
+      transform: translateY(30px) scale(0.97);
+      transition: transform .4s cubic-bezier(.34,1.3,.64,1);
+      box-shadow: 0 40px 90px rgba(0,0,0,0.6), 0 0 0 1px rgba(76,175,128,0.07);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.1) transparent;
+    }
+    .overlay.open .modal { transform: translateY(0) scale(1); }
+
+    /* top accent bar */
+    .modal::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--green-light) 0%, rgba(76,175,128,0) 100%);
+      border-radius: 20px 20px 0 0;
     }
 
-    .school-logo {
-      width: 72px;
-      height: 72px;
-      border-radius: 16px;
-      overflow: hidden;
-      margin: 0 auto 28px;
+    /* ── modal header ── */
+    .modal-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .modal-icon {
+      width: 50px; height: 50px; border-radius: 13px; flex-shrink: 0;
+      background: linear-gradient(135deg, #1a3d2b 0%, #0f2a1d 100%);
+      border: 1px solid rgba(76,175,128,0.2);
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .modal-header-text h2 { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; margin-bottom: 4px; }
+    .modal-header-text h2 em { font-style: italic; color: var(--green-light); }
+    .modal-header-text p  { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+    /* datetime pill */
+    .datetime-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--input-border);
+      border-radius: 10px; padding: 11px 16px; margin-bottom: 22px;
+    }
+    .datetime-pill .dt-icon { font-size: 18px; flex-shrink: 0; }
+    .datetime-pill .dt-info { display: flex; flex-direction: column; gap: 1px; }
+    .datetime-pill .dt-label { font-size: 10px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); }
+    .datetime-pill .dt-value { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9); }
+
+    /* ── form fields ── */
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block; font-size: 10.5px; font-weight: 600;
+      letter-spacing: .9px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .field label .req { color: var(--green-light); }
+
+    .field input[type="text"],
+    .field select {
+      width: 100%; background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 9px; padding: 11px 14px;
+      font-size: 13.5px; color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      outline: none; -webkit-appearance: none;
+      transition: border-color .18s, background .18s;
+    }
+    .field input[type="text"]::placeholder { color: rgba(255,255,255,0.2); }
+    .field input[type="text"]:focus,
+    .field select:focus {
+      border-color: var(--green-light);
+      background: rgba(76,175,128,0.05);
+    }
+    .field select option      { background: #0d1e30; }
+    .field select optgroup    { background: #0d1e30; color: rgba(255,255,255,0.45); font-style: normal; font-weight: 600; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* readonly display field */
+    .field-readonly {
+      width: 100%; background: rgba(255,255,255,0.03);
+      border: 1px solid var(--input-border);
+      border-radius: 9px; padding: 11px 14px;
+      font-size: 13.5px; color: rgba(255,255,255,0.6);
+      font-family: 'DM Sans', sans-serif;
     }
 
-    .school-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    /* ── employee toggle ── */
+    .toggle-field { margin-bottom: 14px; }
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--input-bg); border: 1px solid var(--input-border);
+      border-radius: 9px; padding: 13px 16px;
+      cursor: pointer; user-select: none;
+      transition: border-color .18s, background .18s;
     }
-
-    .school-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #4caf80;
-      margin-bottom: 16px;
+    .toggle-row:hover { border-color: rgba(255,255,255,0.2); }
+    .toggle-row.on    { border-color: rgba(76,175,128,0.35); background: rgba(76,175,128,0.06); }
+    .toggle-info strong { display: block; font-size: 13.5px; color: rgba(255,255,255,0.85); font-weight: 500; margin-bottom: 2px; }
+    .toggle-info span   { font-size: 11.5px; color: var(--muted); }
+    .toggle-track {
+      width: 42px; height: 24px; border-radius: 12px; flex-shrink: 0;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.12);
+      position: relative; transition: background .22s, border-color .22s;
     }
-
-    .main-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(32px, 6vw, 58px);
-      color: #fff;
-      line-height: 1.15;
-      margin-bottom: 12px;
+    .toggle-track::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      transition: transform .22s cubic-bezier(.34,1.4,.64,1), background .22s;
     }
+    .toggle-row.on .toggle-track { background: var(--green); border-color: var(--green-light); }
+    .toggle-row.on .toggle-track::after { transform: translateX(18px); background: #fff; }
 
-    .main-title em {
-      font-style: italic;
-      color: #4caf80;
+    /* ── submit button ── */
+    .btn-submit {
+      width: 100%; padding: 13px; margin-top: 6px;
+      background: var(--green); border: none; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #fff;
+      cursor: pointer; position: relative; overflow: hidden;
+      transition: background .18s, transform .15s, box-shadow .18s;
     }
-
-    .school-year {
-      font-size: 14px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.40);
-      letter-spacing: 1px;
-      margin-bottom: 40px;
+    .btn-submit::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg,rgba(255,255,255,0.08) 0%,transparent 100%);
+      border-radius: inherit;
     }
+    .btn-submit:hover   { background: var(--green-dark); box-shadow: 0 6px 24px rgba(46,125,82,0.4); }
+    .btn-submit:active  { transform: scale(0.985); }
+    .btn-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* ── success view ── */
+    .success-view { display: none; text-align: center; padding: 8px 0; animation: fadeUp .5s ease both; }
+    .success-view.show { display: block; }
+    .success-icon {
+      width: 68px; height: 68px; border-radius: 50%; margin: 0 auto 20px;
+      background: linear-gradient(135deg,#1e4d33,#0f2e1e);
+      border: 2px solid rgba(76,175,128,0.35);
+      display: flex; align-items: center; justify-content: center; font-size: 30px;
+      animation: popIn .5s cubic-bezier(.34,1.6,.64,1) both;
+    }
+    @keyframes popIn { from{transform:scale(0.3);opacity:0} to{transform:scale(1);opacity:1} }
+    .success-view h3 { font-family:'DM Serif Display',serif; font-size:22px; color:#fff; margin-bottom:8px; }
+    .success-view p  { font-size:13.5px; color:var(--muted); line-height:1.6; margin-bottom:28px; }
+    .success-meta {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 28px;
+    }
+    .meta-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      border-radius: 20px; padding: 6px 14px;
+      font-size: 12px; color: rgba(255,255,255,0.7);
+    }
+    .meta-chip .chip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-light); }
+    .btn-enter {
+      display: inline-block; padding: 12px 40px;
+      background: var(--green); border: none; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #fff;
+      cursor: pointer; transition: background .18s, box-shadow .18s;
+    }
+    .btn-enter:hover { background: var(--green-dark); box-shadow: 0 6px 24px rgba(46,125,82,0.4); }
+
+    /* ── toast ── */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%;
+      transform: translateX(-50%) translateY(60px);
+      background: #1b3a28; border: 1px solid var(--green); color: #fff;
+      padding: 11px 24px; border-radius: 8px;
+      font-size: 13px; font-weight: 500;
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+      z-index: 999; white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.error { background: #3a1b1b; border-color: #c0392b; }
+
+    @media (max-width: 480px) {
+      .modal { padding: 26px 20px 24px; }
+      .field-row { grid-template-columns: 1fr; }
+      .navbar { padding: 0 16px; }
     }
   </style>
 </head>
@@ -170,14 +289,13 @@
 
   <nav class="navbar">
     <a class="site-brand" href="#">
-      <div class="site-logo">
-        <img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" />
-      </div>
+      <div class="site-logo"><img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" /></div>
       <span class="site-name">NEU <span>Library</span></span>
     </a>
-    <a href="index.html" class="logout-btn">Log Out</a>
+    <button class="logout-btn" onclick="handleLogout()">Log Out</button>
   </nav>
 
+  <!-- Welcome screen (visible behind modal) -->
   <div class="main-content">
     <div class="school-logo">
       <img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" />
@@ -185,7 +303,307 @@
     <div class="school-label">New Era University</div>
     <h1 class="main-title">Welcome to NEU <em>Library</em></h1>
     <div class="school-year">Academic Year 2026 – 2027</div>
+    <div class="greeting" id="greeting">
+      <span class="dot"></span>
+      <span id="greeting-name">Loading…</span>
+    </div>
   </div>
 
+  <!-- ══ VISITOR LOG MODAL ══ -->
+  <div class="overlay" id="overlay">
+    <div class="modal" id="modal">
+
+      <!-- ── FORM VIEW ── -->
+      <div id="form-view">
+
+        <div class="modal-header">
+          <div class="modal-icon">📋</div>
+          <div class="modal-header-text">
+            <h2>Library <em>Visit Log</em></h2>
+            <p>Please complete the form below before entering. Your visit details help us improve library services.</p>
+          </div>
+        </div>
+
+        <!-- auto-filled date & time -->
+        <div class="datetime-pill">
+          <div class="dt-icon">🕐</div>
+          <div class="dt-info">
+            <div class="dt-label">Date &amp; Time of Visit</div>
+            <div class="dt-value" id="log-datetime">—</div>
+          </div>
+        </div>
+
+        <!-- name row (pre-filled from profile) -->
+        <div class="field-row" style="margin-bottom:14px">
+          <div class="field" style="margin-bottom:0">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" id="f-firstname" placeholder="e.g. Juan" />
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label>Last Name <span class="req">*</span></label>
+            <input type="text" id="f-lastname" placeholder="e.g. dela Cruz" />
+          </div>
+        </div>
+
+        <!-- college / department -->
+        <div class="field">
+          <label>College / Department <span class="req">*</span></label>
+          <select id="f-college">
+            <option value="" disabled selected>Select your college or department</option>
+            <optgroup label="── Graduate ──">
+              <option>Graduate School</option>
+              <option>School of Law</option>
+            </optgroup>
+            <optgroup label="── Undergraduate Colleges ──">
+              <option>College of Accountancy</option>
+              <option>College of Agriculture</option>
+              <option>College of Arts and Science</option>
+              <option>College of Business Administration</option>
+              <option>College of Communication</option>
+              <option>College of Criminology</option>
+              <option>College of Education</option>
+              <option>College of Engineering and Architecture</option>
+              <option>College of Informatics and Computing Studies</option>
+              <option>College of Medical Technology</option>
+              <option>College of Midwifery</option>
+              <option>College of Music</option>
+              <option>College of Nursing</option>
+              <option>College of Physical Therapy</option>
+              <option>College of Respiratory Therapy</option>
+            </optgroup>
+            <optgroup label="── Basic Education ──">
+              <option>Integrated School / SHS</option>
+            </optgroup>
+            <optgroup label="── Staff ──">
+              <option>Staff / Admin</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- reason for visit -->
+        <div class="field">
+          <label>Reason for Visit <span class="req">*</span></label>
+          <select id="f-reason">
+            <option value="" disabled selected>Why are you visiting the library today?</option>
+            <option>Book Borrowing</option>
+            <option>Reading / Study</option>
+            <option>Research</option>
+            <option>Internet Use</option>
+            <option>Printing / Photocopying</option>
+            <option>Thesis / Dissertation</option>
+            <option>Group Study</option>
+            <option>Consultation</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <!-- employee toggle -->
+        <div class="toggle-field">
+          <div class="toggle-row" id="emp-toggle" onclick="toggleEmployee()">
+            <div class="toggle-info">
+              <strong>I am a faculty member or staff</strong>
+              <span>Toggle on if you are an NEU employee</span>
+            </div>
+            <div class="toggle-track"></div>
+          </div>
+        </div>
+
+        <button class="btn-submit" id="submit-btn" onclick="submitLog()">
+          Log My Visit &amp; Enter Library
+        </button>
+
+      </div><!-- #form-view -->
+
+      <!-- ── SUCCESS VIEW ── -->
+      <div class="success-view" id="success-view">
+        <div class="success-icon">✓</div>
+        <h3>Visit Logged!</h3>
+        <p id="success-msg">Your visit has been recorded.<br/>Welcome to the NEU Library.</p>
+        <div class="success-meta" id="success-meta"></div>
+        <button class="btn-enter" onclick="dismissModal()">Enter Library →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    var SUPA_URL = 'https://fqdlpskyavrsoyjbvksi.supabase.co';
+    var SUPA_KEY = 'sb_publishable_nAdhpbEdXTnEqaRv2JAzvg_5k_KUPGP';
+    var db = supabase.createClient(SUPA_URL, SUPA_KEY);
+
+    var isEmployee  = false;
+    var toastTimer  = null;
+    var clockTimer  = null;
+
+    /* ── toast ── */
+    function showToast(msg, isErr) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      isErr ? t.classList.add('error') : t.classList.remove('error');
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 3500);
+    }
+
+    /* ── live clock ── */
+    function updateClock() {
+      var now  = new Date();
+      var opts = {
+        weekday: 'long', year: 'numeric', month: 'long',
+        day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'
+      };
+      document.getElementById('log-datetime').textContent =
+        now.toLocaleString('en-PH', opts);
+    }
+    updateClock();
+    clockTimer = setInterval(updateClock, 1000);
+
+    /* ── employee toggle ── */
+    function toggleEmployee() {
+      isEmployee = !isEmployee;
+      document.getElementById('emp-toggle').classList.toggle('on', isEmployee);
+    }
+
+    /* ── init: check session & load profile ── */
+    async function init() {
+      var sessionRes = await db.auth.getSession();
+      var session    = sessionRes.data.session;
+
+      if (!session) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      var uid = session.user.id;
+
+      /* fetch profile */
+      var profileRes = await db
+        .from('profiles')
+        .select('full_name, role, college')
+        .eq('id', uid)
+        .single();
+
+      var profile = profileRes.data;
+
+      /* redirect admins straight to admin.html */
+      if (profile && profile.role === 'admin') {
+        window.location.href = 'admin.html';
+        return;
+      }
+
+      /* greeting */
+      var firstName = '';
+      if (profile && profile.full_name) {
+        firstName = profile.full_name.trim().split(' ')[0];
+      }
+      document.getElementById('greeting-name').textContent =
+        'Hello, ' + (firstName || 'there') + ' 👋';
+      document.getElementById('greeting').classList.add('visible');
+
+      /* pre-fill name */
+      if (profile && profile.full_name) {
+        var parts = profile.full_name.trim().split(' ');
+        document.getElementById('f-firstname').value = parts[0] || '';
+        document.getElementById('f-lastname').value  = parts.slice(1).join(' ') || '';
+      }
+
+      /* pre-fill college — try to match stored value to an option */
+      if (profile && profile.college) {
+        var sel = document.getElementById('f-college');
+        var stored = profile.college.toLowerCase();
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].text.toLowerCase().indexOf(stored) !== -1 ||
+              stored.indexOf(sel.options[i].text.toLowerCase()) !== -1) {
+            sel.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      /* pre-set employee toggle */
+      if (profile && (profile.role === 'faculty' || profile.role === 'staff')) {
+        isEmployee = true;
+        document.getElementById('emp-toggle').classList.add('on');
+      }
+
+      /* open the modal */
+      document.getElementById('overlay').classList.add('open');
+    }
+
+    /* ── submit log ── */
+    async function submitLog() {
+      var firstName = document.getElementById('f-firstname').value.trim();
+      var lastName  = document.getElementById('f-lastname').value.trim();
+      var college   = document.getElementById('f-college').value;
+      var reason    = document.getElementById('f-reason').value;
+
+      if (!firstName) { showToast('Please enter your first name.', true); return; }
+      if (!lastName)  { showToast('Please enter your last name.', true);  return; }
+      if (!college)   { showToast('Please select your college or department.', true); return; }
+      if (!reason)    { showToast('Please select a reason for your visit.', true);    return; }
+
+      var btn = document.getElementById('submit-btn');
+      btn.disabled    = true;
+      btn.textContent = 'Logging visit…';
+
+      var res = await db.from('visitor_logs').insert({
+        visited_at:  new Date().toISOString(),
+        reason:      reason,
+        college:     college,
+        is_employee: isEmployee
+      });
+
+      btn.disabled    = false;
+      btn.textContent = 'Log My Visit & Enter Library';
+
+      if (res.error) {
+        console.error(res.error);
+        showToast('Could not save your visit. Please try again.', true);
+        return;
+      }
+
+      /* stop clock ticking */
+      clearInterval(clockTimer);
+
+      /* build success chips */
+      var now   = new Date();
+      var chips = [
+        { icon: '📅', text: now.toLocaleDateString('en-PH', { weekday:'short', month:'short', day:'numeric' }) },
+        { icon: '🕐', text: now.toLocaleTimeString('en-PH', { hour:'2-digit', minute:'2-digit' }) },
+        { icon: '📋', text: reason },
+        { icon: '🏫', text: college },
+        { icon: isEmployee ? '👔' : '🎓', text: isEmployee ? 'Employee' : 'Student' },
+      ];
+      document.getElementById('success-meta').innerHTML = chips.map(function(c){
+        return '<div class="meta-chip"><span class="chip-dot"></span>' + c.icon + ' ' + c.text + '</div>';
+      }).join('');
+
+      /* show success */
+      document.getElementById('success-msg').innerHTML =
+        'Welcome, <strong>' + firstName + ' ' + lastName + '</strong>!<br/>' +
+        'Your visit has been recorded. Enjoy your time at the NEU Library.';
+
+      document.getElementById('form-view').style.display  = 'none';
+      document.getElementById('success-view').classList.add('show');
+    }
+
+    /* ── dismiss modal ── */
+    function dismissModal() {
+      var ov = document.getElementById('overlay');
+      ov.style.transition = 'opacity .3s ease';
+      ov.style.opacity    = '0';
+      ov.style.pointerEvents = 'none';
+    }
+
+    /* ── logout ── */
+    async function handleLogout() {
+      await db.auth.signOut();
+      window.location.href = 'index.html';
+    }
+
+    init();
+  </script>
 </body>
 </html>
