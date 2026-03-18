@@ -16,7 +16,6 @@
       --green-light: #4caf80;
       --bg-main: #081525;
       --bg-card: #0e1f33;
-      --bg-card2: #112540;
       --border-color: rgba(255,255,255,0.08);
       --muted: rgba(255,255,255,0.45);
       --input-bg: rgba(255,255,255,0.06);
@@ -31,7 +30,7 @@
       padding-top: 62px;
     }
 
-    /* ── navbar ── */
+    /* navbar */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; height: 62px;
       display: flex; align-items: center; justify-content: space-between;
@@ -40,7 +39,7 @@
       border-bottom: 1px solid var(--border-color); z-index: 100;
     }
     .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo { width: 32px; height: 32px; border-radius: 7px; overflow: hidden; }
+    .nav-logo  { width: 32px; height: 32px; border-radius: 7px; overflow: hidden; }
     .nav-logo img { width: 100%; height: 100%; object-fit: contain; }
     .nav-title { font-family: 'DM Serif Display', serif; font-size: 15px; color: #fff; }
     .nav-title span { color: var(--green-light); }
@@ -58,23 +57,23 @@
     }
     .btn-outline:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
 
-    /* ── layout ── */
+    /* layout */
     .container { max-width: 1100px; margin: 0 auto; padding: 36px 24px; }
     .page-title { margin-bottom: 32px; }
     .page-title h1 { font-family: 'DM Serif Display', serif; font-size: 32px; color: #fff; margin-bottom: 4px; }
     .page-title h1 em { font-style: italic; color: var(--green-light); }
-    .page-title p { font-size: 13.5px; color: var(--muted); }
+    .page-title p  { font-size: 13.5px; color: var(--muted); }
 
-    /* ── stats row ── */
+    /* top stat strip */
     .stats-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
     .stat-box {
       flex: 1; min-width: 140px; background: var(--bg-card);
       border: 1px solid var(--border-color); border-radius: 10px; padding: 18px 20px;
     }
-    .stat-box p { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .stat-box p  { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
     .stat-box h2 { font-family: 'DM Serif Display', serif; font-size: 28px; color: #fff; }
 
-    /* ── tabs ── */
+    /* tabs */
     .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border-color); margin-bottom: 32px; }
     .tab {
       padding: 10px 20px; background: transparent; border: none;
@@ -87,43 +86,18 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* ── form ── */
-    .section-label { font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
-    .form-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; margin-bottom: 32px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-    .form-row .col-full { grid-column: 1 / -1; }
-    .input-group { display: flex; flex-direction: column; }
-    .input-group label { font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-    .input-group input,
-    .input-group select,
-    .input-group textarea {
-      background: var(--input-bg); border: 1px solid var(--input-border);
-      border-radius: 7px; padding: 10px 13px; font-size: 13.5px; color: #fff;
-      font-family: 'DM Sans', sans-serif; outline: none; width: 100%;
-      transition: border-color .18s; -webkit-appearance: none;
-    }
-    .input-group textarea { resize: vertical; min-height: 80px; }
-    .input-group input::placeholder, .input-group textarea::placeholder { color: rgba(255,255,255,0.2); }
-    .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--green-light); }
-    .input-group select option { background: #0e1f33; }
-    .form-footer { display: flex; justify-content: flex-end; }
-    .btn-green {
-      padding: 10px 28px; background: var(--green); border: none; border-radius: 8px;
-      font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 600;
-      color: #fff; cursor: pointer; transition: background .18s, opacity .18s;
-    }
-    .btn-green:hover { background: var(--green-dark); }
-    .btn-green:disabled { opacity: .5; cursor: not-allowed; }
-    .btn-gray {
-      padding: 10px 20px; background: transparent; border: 1px solid var(--input-border);
-      border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 500;
-      color: var(--muted); cursor: pointer; transition: border-color .18s, color .18s;
-    }
-    .btn-gray:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+    /* tags */
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .tag-green  { background: rgba(76,175,128,0.12); border: 1px solid rgba(76,175,128,0.22); color: var(--green-light); }
+    .tag-blue   { background: rgba(66,165,245,0.12); border: 1px solid rgba(66,165,245,0.22); color: #90caf9; }
+    .tag-purple { background: rgba(171,71,188,0.12); border: 1px solid rgba(171,71,188,0.22); color: #ce93d8; }
 
-    /* ── table ── */
+    /* table panel */
     .table-panel { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
-    .table-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid var(--border-color); }
+    .table-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px; border-bottom: 1px solid var(--border-color);
+    }
     .table-header h2 { font-size: 15px; font-weight: 600; color: #fff; }
     .search-box {
       background: var(--input-bg); border: 1px solid var(--input-border);
@@ -139,358 +113,117 @@
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: rgba(255,255,255,0.03); }
     tbody td { padding: 14px 16px; font-size: 13.5px; color: rgba(255,255,255,0.85); vertical-align: middle; }
-    .cover-img { width: 36px; height: 48px; border-radius: 4px; object-fit: cover; display: block; }
-    .cover-placeholder { width: 36px; height: 48px; border-radius: 4px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 18px; }
-
-    .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
-    .tag-green  { background: rgba(76,175,128,0.12); border: 1px solid rgba(76,175,128,0.22); color: var(--green-light); }
-    .tag-orange { background: rgba(255,152,0,0.12);  border: 1px solid rgba(255,152,0,0.22);  color: #ffb74d; }
-    .tag-red    { background: rgba(192,57,43,0.12);  border: 1px solid rgba(192,57,43,0.22);  color: #ef9a9a; }
-    .tag-blue   { background: rgba(66,165,245,0.12); border: 1px solid rgba(66,165,245,0.22); color: #90caf9; }
-    .tag-purple { background: rgba(171,71,188,0.12); border: 1px solid rgba(171,71,188,0.22); color: #ce93d8; }
-    .tag-teal   { background: rgba(38,166,154,0.12); border: 1px solid rgba(38,166,154,0.22); color: #80cbc4; }
-    .tag-yellow { background: rgba(255,214,0,0.10);  border: 1px solid rgba(255,214,0,0.22);  color: #ffe082; }
-
-    .action-group { display: flex; gap: 8px; }
-    .btn-edit { padding: 6px 14px; border-radius: 6px; background: rgba(66,165,245,0.1); border: 1px solid rgba(66,165,245,0.2); font-size: 12px; font-weight: 500; color: #90caf9; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .15s; }
-    .btn-edit:hover { background: rgba(66,165,245,0.2); }
-    .btn-del  { padding: 6px 14px; border-radius: 6px; background: rgba(192,57,43,0.1); border: 1px solid rgba(192,57,43,0.2); font-size: 12px; font-weight: 500; color: #ef9a9a; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .15s; }
-    .btn-del:hover { background: rgba(192,57,43,0.2); }
-
     .empty-msg { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
     .empty-msg .icon { font-size: 40px; margin-bottom: 12px; }
 
-    /* ── modal ── */
-    .modal-bg { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.65); backdrop-filter: blur(4px); align-items: center; justify-content: center; }
-    .modal-bg.open { display: flex; }
-    .modal-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 28px; width: min(500px,92vw); max-height: 90vh; overflow-y: auto; }
-    .modal-box h3 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 20px; }
-    .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; }
-
-    /* ── toast ── */
+    /* toast */
     .toast {
       position: fixed; bottom: 24px; left: 50%;
       transform: translateX(-50%) translateY(70px);
-      background: #1b3a28; border: 1px solid var(--green);
-      color: #fff; padding: 11px 24px; border-radius: 7px;
-      font-size: 13px; font-weight: 500;
-      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
-      z-index: 999; white-space: nowrap;
+      background: #1b3a28; border: 1px solid var(--green); color: #fff;
+      padding: 11px 24px; border-radius: 7px; font-size: 13px; font-weight: 500;
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1); z-index: 999; white-space: nowrap;
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
     .toast.error { background: #3a1b1b; border-color: #c0392b; }
 
-    /* ════════════════════════════════════════════
-       VISITOR STATISTICS TAB
-    ════════════════════════════════════════════ */
+    /* ══════════════════════════════
+       VISITOR STATS
+    ══════════════════════════════ */
 
-    /* control bar */
     .vis-controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: flex-end;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin-bottom: 28px;
+      display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end;
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 12px; padding: 20px 24px; margin-bottom: 28px;
     }
-
-    .vis-controls .ctrl-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      min-width: 140px;
+    .ctrl-group { display: flex; flex-direction: column; gap: 6px; min-width: 150px; }
+    .ctrl-group label {
+      font-size: 10.5px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted);
     }
-
-    .vis-controls .ctrl-group label {
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
     .vis-controls input[type="date"],
     .vis-controls select {
-      background: var(--input-bg);
-      border: 1px solid var(--input-border);
-      border-radius: 7px;
-      padding: 8px 12px;
-      font-size: 13px;
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      outline: none;
-      transition: border-color .18s;
-      -webkit-appearance: none;
-      color-scheme: dark;
+      background: var(--input-bg); border: 1px solid var(--input-border);
+      border-radius: 7px; padding: 9px 12px; font-size: 13px; color: #fff;
+      font-family: 'DM Sans', sans-serif; outline: none;
+      transition: border-color .18s; -webkit-appearance: none; color-scheme: dark;
     }
-
     .vis-controls input[type="date"]:focus,
-    .vis-controls select:focus {
-      border-color: var(--green-light);
-    }
-
+    .vis-controls select:focus { border-color: var(--green-light); }
     .vis-controls select option { background: #0e1f33; }
 
-    /* range pills */
-    .range-pills {
-      display: flex;
-      gap: 6px;
-    }
-
+    .range-pills { display: flex; gap: 6px; flex-wrap: wrap; }
     .range-pill {
-      padding: 7px 16px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      background: var(--input-bg);
-      border: 1px solid var(--input-border);
-      color: var(--muted);
-      cursor: pointer;
-      transition: all .18s;
-      font-family: 'DM Sans', sans-serif;
+      padding: 7px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;
+      background: var(--input-bg); border: 1px solid var(--input-border);
+      color: var(--muted); cursor: pointer; transition: all .18s; font-family: 'DM Sans', sans-serif;
     }
-
-    .range-pill.active,
-    .range-pill:hover {
-      background: rgba(76,175,128,0.15);
-      border-color: rgba(76,175,128,0.35);
-      color: var(--green-light);
+    .range-pill.active, .range-pill:hover {
+      background: rgba(76,175,128,0.15); border-color: rgba(76,175,128,0.35); color: var(--green-light);
     }
+    .vis-divider { width: 1px; height: 40px; background: var(--border-color); align-self: flex-end; margin: 0 2px; }
 
-    .vis-divider {
-      width: 1px;
-      height: 38px;
-      background: var(--border-color);
-      align-self: flex-end;
-      margin: 0 4px;
-    }
-
-    /* summary stat cards */
+    /* stat cards grid */
     .vis-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px;
-      margin-bottom: 28px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(165px,1fr));
+      gap: 14px; margin-bottom: 28px;
     }
-
     .vis-stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 20px 22px;
-      position: relative;
-      overflow: hidden;
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 12px; padding: 20px 22px; position: relative; overflow: hidden;
       transition: border-color .2s, transform .2s;
     }
-
-    .vis-stat-card:hover {
-      border-color: rgba(76,175,128,0.2);
-      transform: translateY(-1px);
-    }
-
+    .vis-stat-card:hover { border-color: rgba(76,175,128,0.2); transform: translateY(-2px); }
     .vis-stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      border-radius: 12px 12px 0 0;
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; border-radius: 12px 12px 0 0;
     }
+    .vis-stat-card.acc-green::before  { background: var(--green-light); }
+    .vis-stat-card.acc-blue::before   { background: #90caf9; }
+    .vis-stat-card.acc-purple::before { background: #ce93d8; }
+    .vis-stat-card.acc-orange::before { background: #ffb74d; }
+    .vis-stat-card.acc-teal::before   { background: #80cbc4; }
+    .vis-stat-card.acc-yellow::before { background: #ffe082; }
+    .vis-stat-card .card-icon  { font-size: 22px; margin-bottom: 10px; display: block; }
+    .vis-stat-card .card-label { font-size: 11px; font-weight: 600; letter-spacing: .9px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .vis-stat-card .card-value { font-family: 'DM Serif Display', serif; font-size: 34px; line-height: 1; color: #fff; margin-bottom: 4px; }
+    .vis-stat-card .card-sub   { font-size: 12px; color: var(--muted); }
 
-    .vis-stat-card.accent-green::before  { background: var(--green-light); }
-    .vis-stat-card.accent-blue::before   { background: #90caf9; }
-    .vis-stat-card.accent-purple::before { background: #ce93d8; }
-    .vis-stat-card.accent-orange::before { background: #ffb74d; }
-    .vis-stat-card.accent-teal::before   { background: #80cbc4; }
-    .vis-stat-card.accent-yellow::before { background: #ffe082; }
-
-    .vis-stat-card .card-icon {
-      font-size: 22px;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .vis-stat-card .card-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .9px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .vis-stat-card .card-value {
-      font-family: 'DM Serif Display', serif;
-      font-size: 34px;
-      line-height: 1;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .vis-stat-card .card-sub {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* breakdown cards */
-    .vis-breakdowns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-
-    @media (max-width: 720px) {
-      .vis-breakdowns { grid-template-columns: 1fr; }
-    }
-
-    .breakdown-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .breakdown-card .bc-head {
-      padding: 16px 20px 14px;
-      border-bottom: 1px solid var(--border-color);
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.8);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .bc-head .bc-icon { font-size: 16px; }
-
-    .breakdown-list { padding: 8px 0; }
-
-    .bd-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 20px;
-      transition: background .15s;
-    }
-
-    .bd-row:hover { background: rgba(255,255,255,0.025); }
-
-    .bd-label {
-      flex: 1;
-      font-size: 13px;
-      color: rgba(255,255,255,0.8);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .bd-bar-wrap {
-      flex: 2;
-      height: 6px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .bd-bar {
-      height: 100%;
-      border-radius: 3px;
-      transition: width .5s cubic-bezier(.34,1.2,.64,1);
-    }
-
-    .bd-count {
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.7);
-      min-width: 30px;
-      text-align: right;
-    }
-
-    /* chart card */
-    .chart-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 28px;
-    }
-
-    .chart-card h3 {
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
+    /* chart */
+    .chart-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; margin-bottom: 28px; }
+    .chart-card h3 { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.75); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
     .chart-wrap { position: relative; height: 220px; }
 
-    /* trend */
-    .vis-trend {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      margin-top: 2px;
-    }
-    .trend-up   { color: var(--green-light); }
-    .trend-down { color: #ef9a9a; }
-    .trend-flat { color: var(--muted); }
+    /* breakdowns */
+    .vis-breakdowns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+    .breakdown-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
+    .bc-head { padding: 16px 20px 14px; border-bottom: 1px solid var(--border-color); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 8px; }
+    .bc-icon { font-size: 16px; }
+    .breakdown-list { padding: 8px 0; }
+    .bd-row { display: flex; align-items: center; gap: 12px; padding: 10px 20px; transition: background .15s; }
+    .bd-row:hover { background: rgba(255,255,255,0.025); }
+    .bd-label { flex: 1; font-size: 13px; color: rgba(255,255,255,0.8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bd-bar-wrap { flex: 2; height: 6px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; }
+    .bd-bar { height: 100%; border-radius: 3px; transition: width .5s cubic-bezier(.34,1.2,.64,1); }
+    .bd-count { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); min-width: 30px; text-align: right; }
 
-    /* loading skeleton */
-    @keyframes shimmer {
-      0%   { background-position: -400px 0; }
-      100% { background-position: 400px 0; }
-    }
-
-    .skeleton {
-      background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.09) 50%, rgba(255,255,255,0.04) 75%);
-      background-size: 800px 100%;
-      animation: shimmer 1.5s infinite;
-      border-radius: 6px;
-    }
-
-    .vis-loading {
-      text-align: center;
-      padding: 80px 20px;
-      color: var(--muted);
-    }
-
-    .vis-loading .spin {
-      width: 36px; height: 36px;
-      border: 3px solid rgba(76,175,128,0.2);
-      border-top-color: var(--green-light);
-      border-radius: 50%;
-      animation: spin .8s linear infinite;
-      margin: 0 auto 14px;
-    }
+    /* helpers */
     @keyframes spin { to { transform: rotate(360deg); } }
+    .vis-loading { text-align: center; padding: 80px 20px; color: var(--muted); }
+    .vis-loading .spin { width: 36px; height: 36px; border: 3px solid rgba(76,175,128,0.2); border-top-color: var(--green-light); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 14px; }
+    .no-data-msg { text-align: center; padding: 48px 20px; color: var(--muted); font-size: 14px; }
+    .no-data-msg .nd-icon { font-size: 36px; margin-bottom: 10px; }
 
-    .no-data-msg {
-      text-align: center;
-      padding: 48px 20px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .no-data-msg .icon { font-size: 36px; margin-bottom: 10px; }
-
-    /* ── responsive ── */
+    /* responsive */
+    @media (max-width: 720px) { .vis-breakdowns { grid-template-columns: 1fr; } }
     @media (max-width: 640px) {
-      .form-row { grid-template-columns: 1fr; }
-      .form-row .col-full { grid-column: 1; }
       .navbar { padding: 0 16px; }
       .container { padding: 24px 16px; }
       .stats-row { flex-direction: column; }
-      table { font-size: 12px; }
-      thead th, tbody td { padding: 10px; }
       .vis-controls { flex-direction: column; align-items: stretch; }
       .vis-divider { display: none; }
+      table { font-size: 12px; }
+      thead th, tbody td { padding: 10px; }
     }
   </style>
 </head>
@@ -511,99 +244,67 @@
 
   <div class="page-title">
     <h1>Admin <em>Dashboard</em></h1>
-    <p>Manage books, view registered users, and monitor visitor statistics.</p>
+    <p>Manage registered users and monitor library visitor statistics.</p>
   </div>
 
+  <!-- quick-glance strip -->
   <div class="stats-row">
-    <div class="stat-box"><p>Total Books</p><h2 id="stat-total">—</h2></div>
-    <div class="stat-box"><p>Available</p><h2 id="stat-available">—</h2></div>
-    <div class="stat-box"><p>Low Stock</p><h2 id="stat-low">—</h2></div>
-    <div class="stat-box"><p>Out of Stock</p><h2 id="stat-out">—</h2></div>
     <div class="stat-box"><p>Total Users</p><h2 id="stat-users">—</h2></div>
+    <div class="stat-box"><p>Today's Visitors</p><h2 id="stat-today">—</h2></div>
+    <div class="stat-box"><p>This Week</p><h2 id="stat-week">—</h2></div>
+    <div class="stat-box"><p>This Month</p><h2 id="stat-month">—</h2></div>
   </div>
 
   <div class="tabs">
-    <button class="tab active"  onclick="switchTab('books')">📚 Manage Books</button>
-    <button class="tab"         onclick="switchTab('users')">👥 Registered Users</button>
-    <button class="tab"         onclick="switchTab('visitors')">📊 Visitor Stats</button>
+    <button class="tab active" onclick="switchTab('users')">👥 Registered Users</button>
+    <button class="tab"        onclick="switchTab('visitors')">📊 Visitor Statistics</button>
   </div>
 
-  <!-- ══ BOOKS TAB ══ -->
-  <div class="tab-content active" id="tab-books">
-    <div class="section-label">Add New Book</div>
-    <div class="form-card">
-      <div class="form-row">
-        <div class="input-group"><label>Title</label><input type="text" id="add-title" placeholder="Book title" /></div>
-        <div class="input-group"><label>Author</label><input type="text" id="add-author" placeholder="Author name" /></div>
-        <div class="input-group">
-          <label>Category</label>
-          <select id="add-category">
-            <option value="" disabled selected>Select category</option>
-            <option>Fiction</option><option>Non-Fiction</option><option>Science &amp; Technology</option>
-            <option>History</option><option>Mathematics</option><option>Engineering</option>
-            <option>Medicine &amp; Health</option><option>Law</option><option>Business &amp; Economics</option>
-            <option>Education</option><option>Arts &amp; Music</option><option>Reference</option><option>Other</option>
-          </select>
-        </div>
-        <div class="input-group"><label>Available Copies</label><input type="number" id="add-copies" placeholder="e.g. 5" min="0" /></div>
-        <div class="input-group col-full"><label>Cover Image URL</label><input type="url" id="add-cover" placeholder="https://... (optional)" /></div>
-        <div class="input-group col-full"><label>Description</label><textarea id="add-desc" placeholder="Short description of the book..."></textarea></div>
-      </div>
-      <div class="form-footer"><button class="btn-green" id="add-btn" onclick="handleAddBook()">Add Book</button></div>
-    </div>
-
-    <div class="table-panel">
-      <div class="table-header">
-        <h2>All Books</h2>
-        <input class="search-box" type="text" id="search-books" placeholder="Search title or author…" oninput="filterBooks()" />
-      </div>
-      <div id="books-list"><div class="empty-msg"><div class="icon">📚</div>Loading books...</div></div>
-    </div>
-  </div>
-
-  <!-- ══ USERS TAB ══ -->
-  <div class="tab-content" id="tab-users">
+  <!-- ══ USERS ══ -->
+  <div class="tab-content active" id="tab-users">
     <div class="table-panel">
       <div class="table-header">
         <h2>Registered Users</h2>
-        <input class="search-box" type="text" id="search-users" placeholder="Search name or college…" oninput="filterUsers()" />
+        <input class="search-box" type="text" id="search-users"
+               placeholder="Search name or college…" oninput="filterUsers()" />
       </div>
-      <div id="users-list"><div class="empty-msg"><div class="icon">👥</div>Loading users...</div></div>
+      <div id="users-list">
+        <div class="empty-msg"><div class="icon">👥</div>Loading users…</div>
+      </div>
     </div>
   </div>
 
-  <!-- ══ VISITOR STATS TAB ══ -->
+  <!-- ══ VISITOR STATS ══ -->
   <div class="tab-content" id="tab-visitors">
 
-    <!-- Controls -->
     <div class="vis-controls">
 
-      <!-- Quick range pills -->
+      <!-- quick range -->
       <div class="ctrl-group">
         <label>Quick Range</label>
         <div class="range-pills">
-          <button class="range-pill active" data-range="today"   onclick="setRange('today')">Today</button>
-          <button class="range-pill"        data-range="week"    onclick="setRange('week')">This Week</button>
-          <button class="range-pill"        data-range="month"   onclick="setRange('month')">This Month</button>
-          <button class="range-pill"        data-range="custom"  onclick="setRange('custom')">Custom</button>
+          <button class="range-pill active" data-range="today"  onclick="setRange('today')">Today</button>
+          <button class="range-pill"        data-range="week"   onclick="setRange('week')">This Week</button>
+          <button class="range-pill"        data-range="month"  onclick="setRange('month')">This Month</button>
+          <button class="range-pill"        data-range="custom" onclick="setRange('custom')">Custom</button>
         </div>
       </div>
 
       <div class="vis-divider"></div>
 
-      <!-- Custom date range (hidden unless custom) -->
-      <div class="ctrl-group" id="custom-from-group" style="display:none">
+      <!-- custom dates (hidden by default) -->
+      <div class="ctrl-group" id="grp-from" style="display:none">
         <label>From</label>
-        <input type="date" id="vis-from" onchange="applyFilters()" />
+        <input type="date" id="vis-from" onchange="loadAndRender()" />
       </div>
-      <div class="ctrl-group" id="custom-to-group" style="display:none">
+      <div class="ctrl-group" id="grp-to" style="display:none">
         <label>To</label>
-        <input type="date" id="vis-to" onchange="applyFilters()" />
+        <input type="date" id="vis-to" onchange="loadAndRender()" />
       </div>
 
-      <div class="vis-divider" id="filter-divider"></div>
+      <div class="vis-divider"></div>
 
-      <!-- Reason filter -->
+      <!-- filters -->
       <div class="ctrl-group">
         <label>Reason for Visit</label>
         <select id="vis-reason" onchange="applyFilters()">
@@ -620,7 +321,6 @@
         </select>
       </div>
 
-      <!-- College filter -->
       <div class="ctrl-group">
         <label>College / Dept.</label>
         <select id="vis-college" onchange="applyFilters()">
@@ -631,7 +331,6 @@
         </select>
       </div>
 
-      <!-- Employee type filter -->
       <div class="ctrl-group">
         <label>Visitor Type</label>
         <select id="vis-emptype" onchange="applyFilters()">
@@ -641,567 +340,338 @@
         </select>
       </div>
 
-    </div>
+    </div><!-- .vis-controls -->
 
-    <!-- Summary stat cards -->
+    <!-- summary cards -->
     <div class="vis-stats" id="vis-stat-cards">
-      <!-- rendered by JS -->
+      <div class="vis-loading"><div class="spin"></div>Loading visitor data…</div>
     </div>
 
-    <!-- Trend chart -->
-    <div class="chart-card" id="vis-chart-card">
+    <!-- trend chart -->
+    <div class="chart-card" id="vis-chart-card" style="display:none">
       <h3>📈 Daily Visitor Trend</h3>
       <div class="chart-wrap"><canvas id="vis-chart"></canvas></div>
     </div>
 
-    <!-- Breakdown grids -->
-    <div class="vis-breakdowns" id="vis-breakdowns">
-      <!-- rendered by JS -->
-    </div>
+    <!-- breakdowns -->
+    <div class="vis-breakdowns" id="vis-breakdowns"></div>
 
-  </div><!-- end tab-visitors -->
+  </div><!-- #tab-visitors -->
 
 </div><!-- .container -->
-
-<!-- Edit Modal -->
-<div class="modal-bg" id="edit-modal">
-  <div class="modal-box">
-    <h3>Edit Book</h3>
-    <input type="hidden" id="edit-id" />
-    <div class="form-row">
-      <div class="input-group"><label>Title</label><input type="text" id="edit-title" placeholder="Book title" /></div>
-      <div class="input-group"><label>Author</label><input type="text" id="edit-author" placeholder="Author name" /></div>
-      <div class="input-group">
-        <label>Category</label>
-        <select id="edit-category">
-          <option value="" disabled>Select category</option>
-          <option>Fiction</option><option>Non-Fiction</option><option>Science &amp; Technology</option>
-          <option>History</option><option>Mathematics</option><option>Engineering</option>
-          <option>Medicine &amp; Health</option><option>Law</option><option>Business &amp; Economics</option>
-          <option>Education</option><option>Arts &amp; Music</option><option>Reference</option><option>Other</option>
-        </select>
-      </div>
-      <div class="input-group"><label>Available Copies</label><input type="number" id="edit-copies" min="0" /></div>
-      <div class="input-group col-full"><label>Cover Image URL</label><input type="url" id="edit-cover" placeholder="https://..." /></div>
-      <div class="input-group col-full"><label>Description</label><textarea id="edit-desc"></textarea></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-gray" onclick="closeModal()">Cancel</button>
-      <button class="btn-green" id="save-btn" onclick="saveEdit()">Save Changes</button>
-    </div>
-  </div>
-</div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-/* ─────────────────────────────────────────────
-   Supabase init
-───────────────────────────────────────────── */
+/* ── Supabase ── */
 var SUPA_URL = 'https://fqdlpskyavrsoyjbvksi.supabase.co';
 var SUPA_KEY = 'sb_publishable_nAdhpbEdXTnEqaRv2JAzvg_5k_KUPGP';
 var db = supabase.createClient(SUPA_URL, SUPA_KEY);
 
-var booksList = [];
-var usersList = [];
-var toastTimeout;
+var usersList    = [];
+var visitorRaw   = [];
+var visitorFilt  = [];
+var visChart     = null;
+var currentRange = 'today';
+var visInited    = false;
+var toastTimer;
 
-/* ─────────────────────────────────────────────
-   Toast
-───────────────────────────────────────────── */
+var BAR_COLORS = [
+  '#4caf80','#90caf9','#ce93d8','#ffb74d','#80cbc4',
+  '#ffe082','#ef9a9a','#a5d6a7','#f48fb1','#b0bec5'
+];
+
+/* ── Toast ── */
 function toast(msg, isErr) {
   var t = document.getElementById('toast');
   t.textContent = msg;
   isErr ? t.classList.add('error') : t.classList.remove('error');
   t.classList.add('show');
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(function(){ t.classList.remove('show'); }, 3500);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 3500);
 }
 
-/* ─────────────────────────────────────────────
-   Tabs
-───────────────────────────────────────────── */
+/* ── Tabs ── */
 function switchTab(name) {
-  var tabs = document.querySelectorAll('.tab');
-  var contents = document.querySelectorAll('.tab-content');
-  tabs[0].classList.toggle('active', name === 'books');
-  tabs[1].classList.toggle('active', name === 'users');
-  tabs[2].classList.toggle('active', name === 'visitors');
-  document.getElementById('tab-books').classList.toggle('active', name === 'books');
-  document.getElementById('tab-users').classList.toggle('active', name === 'users');
-  document.getElementById('tab-visitors').classList.toggle('active', name === 'visitors');
-  if (name === 'users' && usersList.length === 0) fetchUsers();
-  if (name === 'visitors') initVisitorStats();
+  document.querySelectorAll('.tab').forEach(function(t,i){
+    t.classList.toggle('active', (name==='users'&&i===0)||(name==='visitors'&&i===1));
+  });
+  document.getElementById('tab-users').classList.toggle('active',     name==='users');
+  document.getElementById('tab-visitors').classList.toggle('active',  name==='visitors');
+  if (name==='visitors' && !visInited) { visInited=true; loadAndRender(); }
 }
 
-/* ─────────────────────────────────────────────
-   Auth
-───────────────────────────────────────────── */
+/* ── Auth ── */
 async function handleLogout() {
   await db.auth.signOut();
   window.location.href = 'index.html';
 }
 
-/* ─────────────────────────────────────────────
-   Books
-───────────────────────────────────────────── */
-async function fetchBooks() {
-  var result = await db.from('books').select('*').order('created_at', { ascending: false });
-  if (result.error) { toast('Failed to load books.', true); return; }
-  booksList = result.data || [];
-  showBooks(booksList);
-  updateStats(booksList);
-}
-
-function updateStats(books) {
-  document.getElementById('stat-total').textContent     = books.length;
-  document.getElementById('stat-available').textContent = books.filter(function(b){ return b.copies > 1; }).length;
-  document.getElementById('stat-low').textContent       = books.filter(function(b){ return b.copies === 1; }).length;
-  document.getElementById('stat-out').textContent       = books.filter(function(b){ return b.copies === 0; }).length;
-}
-
-function showBooks(books) {
-  var el = document.getElementById('books-list');
-  if (!books.length) { el.innerHTML = '<div class="empty-msg"><div class="icon">📚</div>No books found.</div>'; return; }
-  var rows = '';
-  for (var i = 0; i < books.length; i++) {
-    var b = books[i];
-    var cover = b.cover_image
-      ? '<img class="cover-img" src="' + b.cover_image + '" alt="" onerror="this.style.display=\'none\'">'
-      : '<div class="cover-placeholder">📖</div>';
-    var copyTag = b.copies === 0
-      ? '<span class="tag tag-red">'    + b.copies + ' (Out)</span>'
-      : b.copies === 1
-      ? '<span class="tag tag-orange">' + b.copies + ' (Low)</span>'
-      : '<span class="tag tag-green">'  + b.copies + '</span>';
-    var safeTitle = b.title.replace(/'/g, "\\'");
-    rows += '<tr><td>' + cover + '</td><td>' + b.title + '</td><td>' + b.author + '</td><td>' + (b.category||'—') + '</td><td>' + copyTag + '</td>';
-    rows += '<td><div class="action-group"><button class="btn-edit" onclick="openEdit(\'' + b.id + '\')">Edit</button><button class="btn-del" onclick="deleteBook(\'' + b.id + '\',\'' + safeTitle + '\')">Delete</button></div></td></tr>';
-  }
-  el.innerHTML = '<table><thead><tr><th>Cover</th><th>Title</th><th>Author</th><th>Category</th><th>Copies</th><th>Actions</th></tr></thead><tbody>' + rows + '</tbody></table>';
-}
-
-function filterBooks() {
-  var q = document.getElementById('search-books').value.toLowerCase();
-  showBooks(booksList.filter(function(b){ return b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q); }));
-}
-
+/* ── Users ── */
 async function fetchUsers() {
-  var result = await db.from('profiles').select('*').order('full_name', { ascending: true });
-  if (result.error) { toast('Failed to load users.', true); return; }
-  usersList = result.data || [];
+  var res = await db.from('profiles').select('*').order('full_name',{ascending:true});
+  if (res.error) { toast('Failed to load users.', true); return; }
+  usersList = res.data || [];
   showUsers(usersList);
   document.getElementById('stat-users').textContent = usersList.length;
 }
 
 function showUsers(users) {
   var el = document.getElementById('users-list');
-  if (!users.length) { el.innerHTML = '<div class="empty-msg"><div class="icon">👥</div>No users found.</div>'; return; }
-  var rows = '';
-  for (var i = 0; i < users.length; i++) {
-    var u = users[i];
-    var cls = u.role === 'faculty' ? 'tag-purple' : u.role === 'admin' ? 'tag-green' : 'tag-blue';
-    rows += '<tr><td>' + (u.full_name||'—') + '</td><td><span class="tag ' + cls + '">' + (u.role||'—') + '</span></td><td>' + (u.college||'—') + '</td></tr>';
+  if (!users.length) {
+    el.innerHTML = '<div class="empty-msg"><div class="icon">👥</div>No users found.</div>';
+    return;
   }
-  el.innerHTML = '<table><thead><tr><th>Full Name</th><th>Role</th><th>College / Dept.</th></tr></thead><tbody>' + rows + '</tbody></table>';
+  var rows = users.map(function(u){
+    var cls = u.role==='faculty' ? 'tag-purple' : u.role==='admin' ? 'tag-green' : 'tag-blue';
+    return '<tr>'
+      + '<td>'+(u.full_name||'—')+'</td>'
+      + '<td><span class="tag '+cls+'">'+(u.role||'—')+'</span></td>'
+      + '<td>'+(u.college||'—')+'</td>'
+      + '</tr>';
+  }).join('');
+  el.innerHTML = '<table><thead><tr><th>Full Name</th><th>Role</th><th>College / Dept.</th></tr></thead><tbody>'+rows+'</tbody></table>';
 }
 
 function filterUsers() {
   var q = document.getElementById('search-users').value.toLowerCase();
-  showUsers(usersList.filter(function(u){ return (u.full_name||'').toLowerCase().includes(q) || (u.college||'').toLowerCase().includes(q); }));
+  showUsers(usersList.filter(function(u){
+    return (u.full_name||'').toLowerCase().includes(q) || (u.college||'').toLowerCase().includes(q);
+  }));
 }
 
-async function handleAddBook() {
-  var title = document.getElementById('add-title').value.trim();
-  var author = document.getElementById('add-author').value.trim();
-  if (!title || !author) { toast('Title and Author are required.', true); return; }
-  var btn = document.getElementById('add-btn');
-  btn.disabled = true; btn.textContent = 'Adding…';
-  var result = await db.from('books').insert({
-    title: title, author: author,
-    category: document.getElementById('add-category').value || null,
-    copies: parseInt(document.getElementById('add-copies').value) || 0,
-    cover_image: document.getElementById('add-cover').value.trim() || null,
-    description: document.getElementById('add-desc').value.trim() || null
-  });
-  btn.disabled = false; btn.textContent = 'Add Book';
-  if (result.error) { toast(result.error.message, true); return; }
-  ['add-title','add-author','add-copies','add-cover','add-desc'].forEach(function(id){ document.getElementById(id).value=''; });
-  document.getElementById('add-category').selectedIndex = 0;
-  toast('Book added successfully!');
-  fetchBooks();
+/* ── Top-strip visitor counts ── */
+async function fetchVisitorCounts() {
+  var now = new Date();
+  var todayStart = new Date(now); todayStart.setHours(0,0,0,0);
+  var weekStart  = new Date(now); weekStart.setDate(now.getDate()-now.getDay()); weekStart.setHours(0,0,0,0);
+  var monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+
+  var results = await Promise.all([
+    db.from('visitor_logs').select('id',{count:'exact',head:true}).gte('visited_at', todayStart.toISOString()),
+    db.from('visitor_logs').select('id',{count:'exact',head:true}).gte('visited_at', weekStart.toISOString()),
+    db.from('visitor_logs').select('id',{count:'exact',head:true}).gte('visited_at', monthStart.toISOString()),
+  ]);
+  document.getElementById('stat-today').textContent = results[0].count ?? '—';
+  document.getElementById('stat-week').textContent  = results[1].count ?? '—';
+  document.getElementById('stat-month').textContent = results[2].count ?? '—';
 }
 
-async function deleteBook(id, title) {
-  if (!confirm('Delete "' + title + '"?')) return;
-  var result = await db.from('books').delete().eq('id', id);
-  if (result.error) { toast(result.error.message, true); return; }
-  toast('Book deleted.');
-  fetchBooks();
-}
+/* ── Date helpers ── */
+function dateStr(d) { return d.toISOString().slice(0,10); }
 
-function openEdit(id) {
-  var book = booksList.find(function(b){ return b.id === id; });
-  if (!book) return;
-  document.getElementById('edit-id').value       = book.id;
-  document.getElementById('edit-title').value    = book.title;
-  document.getElementById('edit-author').value   = book.author;
-  document.getElementById('edit-category').value = book.category || '';
-  document.getElementById('edit-copies').value   = book.copies;
-  document.getElementById('edit-cover').value    = book.cover_image || '';
-  document.getElementById('edit-desc').value     = book.description || '';
-  document.getElementById('edit-modal').classList.add('open');
-}
-
-function closeModal() { document.getElementById('edit-modal').classList.remove('open'); }
-
-async function saveEdit() {
-  var id = document.getElementById('edit-id').value;
-  var title = document.getElementById('edit-title').value.trim();
-  var author = document.getElementById('edit-author').value.trim();
-  if (!title || !author) { toast('Title and Author are required.', true); return; }
-  var btn = document.getElementById('save-btn');
-  btn.disabled = true; btn.textContent = 'Saving…';
-  var result = await db.from('books').update({
-    title: title, author: author,
-    category: document.getElementById('edit-category').value || null,
-    copies: parseInt(document.getElementById('edit-copies').value) || 0,
-    cover_image: document.getElementById('edit-cover').value.trim() || null,
-    description: document.getElementById('edit-desc').value.trim() || null
-  }).eq('id', id);
-  btn.disabled = false; btn.textContent = 'Save Changes';
-  if (result.error) { toast(result.error.message, true); return; }
-  closeModal();
-  toast('Book updated successfully!');
-  fetchBooks();
-}
-
-document.getElementById('edit-modal').addEventListener('click', function(e){ if (e.target===this) closeModal(); });
-fetchBooks();
-
-
-/* ═══════════════════════════════════════════════════════════════
-   VISITOR STATISTICS
-   Assumes a Supabase table: visitor_logs
-   Columns: id, visited_at (timestamptz), reason (text),
-            college (text), is_employee (bool)
-═══════════════════════════════════════════════════════════════ */
-
-var visitorData   = [];        // raw fetched rows
-var filteredData  = [];        // after active filters
-var visChart      = null;
-var currentRange  = 'today';
-var visInited     = false;
-
-/* colour palette for bar segments */
-var BAR_COLORS = [
-  '#4caf80','#90caf9','#ce93d8','#ffb74d','#80cbc4',
-  '#ffe082','#ef9a9a','#a5d6a7','#f48fb1','#b0bec5'
-];
-
-/* ── date helpers ── */
-function dateStr(d) {
-  return d.toISOString().slice(0,10);
-}
-
-function getRangeDates(range) {
+function getRangeDates() {
   var now = new Date();
   var from, to;
   to = new Date(now); to.setHours(23,59,59,999);
-
-  if (range === 'today') {
+  if (currentRange==='today') {
     from = new Date(now); from.setHours(0,0,0,0);
-  } else if (range === 'week') {
-    from = new Date(now);
-    var day = from.getDay();
-    from.setDate(from.getDate() - day);
-    from.setHours(0,0,0,0);
-  } else if (range === 'month') {
-    from = new Date(now.getFullYear(), now.getMonth(), 1, 0, 0, 0, 0);
+  } else if (currentRange==='week') {
+    from = new Date(now); from.setDate(now.getDate()-now.getDay()); from.setHours(0,0,0,0);
+  } else if (currentRange==='month') {
+    from = new Date(now.getFullYear(), now.getMonth(), 1, 0,0,0,0);
   } else {
-    // custom — read from inputs
     var fv = document.getElementById('vis-from').value;
     var tv = document.getElementById('vis-to').value;
-    from = fv ? new Date(fv + 'T00:00:00') : new Date(now.getFullYear(), now.getMonth(), 1);
-    to   = tv ? new Date(tv + 'T23:59:59') : new Date();
+    from = fv ? new Date(fv+'T00:00:00') : new Date(now.getFullYear(), now.getMonth(), 1);
+    to   = tv ? new Date(tv+'T23:59:59') : new Date();
   }
-  return { from: from, to: to };
+  return { from:from, to:to };
 }
 
-/* ── fetch ── */
-async function fetchVisitorData(range) {
-  var dates = getRangeDates(range);
-  var q = db.from('visitor_logs')
+/* ── Range pills ── */
+function setRange(r) {
+  currentRange = r;
+  document.querySelectorAll('.range-pill').forEach(function(p){
+    p.classList.toggle('active', p.dataset.range===r);
+  });
+  var isCustom = r==='custom';
+  document.getElementById('grp-from').style.display = isCustom ? 'flex' : 'none';
+  document.getElementById('grp-to').style.display   = isCustom ? 'flex' : 'none';
+  if (!isCustom) loadAndRender();
+}
+
+/* ── Fetch + render ── */
+async function loadAndRender() {
+  document.getElementById('vis-stat-cards').innerHTML =
+    '<div class="vis-loading"><div class="spin"></div>Loading visitor data…</div>';
+  document.getElementById('vis-breakdowns').innerHTML = '';
+  document.getElementById('vis-chart-card').style.display = 'none';
+
+  var dates = getRangeDates();
+  var res = await db
+    .from('visitor_logs')
     .select('id, visited_at, reason, college, is_employee')
     .gte('visited_at', dates.from.toISOString())
     .lte('visited_at', dates.to.toISOString())
-    .order('visited_at', { ascending: true });
+    .order('visited_at', {ascending:true});
 
-  var result = await q;
-  if (result.error) {
-    toast('Failed to load visitor data.', true);
-    return [];
-  }
-  return result.data || [];
-}
-
-/* ── init (called once per tab open) ── */
-async function initVisitorStats() {
-  if (visInited) { applyFilters(); return; }
-  visInited = true;
-  setRange('today', true);
-}
-
-/* ── range pills ── */
-function setRange(range, skipFetch) {
-  currentRange = range;
-  document.querySelectorAll('.range-pill').forEach(function(p){
-    p.classList.toggle('active', p.dataset.range === range);
-  });
-  var isCustom = range === 'custom';
-  document.getElementById('custom-from-group').style.display = isCustom ? 'flex' : 'none';
-  document.getElementById('custom-to-group').style.display   = isCustom ? 'flex' : 'none';
-
-  if (!skipFetch) loadAndRender();
-}
-
-/* ── load + render pipeline ── */
-async function loadAndRender() {
-  renderLoading();
-  visitorData  = await fetchVisitorData(currentRange);
+  if (res.error) { toast('Failed to load visitor data.', true); return; }
+  visitorRaw = res.data || [];
   applyFilters();
 }
 
-/* ── apply dropdown filters on already-fetched data ── */
+/* ── Dropdown filters ── */
 function applyFilters() {
   var reason  = document.getElementById('vis-reason').value;
   var college = document.getElementById('vis-college').value;
   var emptype = document.getElementById('vis-emptype').value;
 
-  // If custom range, re-fetch (dates may have changed)
-  if (currentRange === 'custom') {
-    loadAndRender();
-    return;
-  }
-
-  filteredData = visitorData.filter(function(r){
+  visitorFilt = visitorRaw.filter(function(r){
     if (reason  && r.reason  !== reason)  return false;
     if (college && r.college !== college) return false;
-    if (emptype === 'employee' && !r.is_employee) return false;
-    if (emptype === 'student'  &&  r.is_employee) return false;
+    if (emptype==='employee' && !r.is_employee) return false;
+    if (emptype==='student'  &&  r.is_employee) return false;
     return true;
   });
 
-  renderAll(filteredData);
+  renderStatCards(visitorFilt);
+  renderChart(visitorFilt);
+  renderBreakdowns(visitorFilt);
 }
 
-/* ── loading placeholder ── */
-function renderLoading() {
-  document.getElementById('vis-stat-cards').innerHTML =
-    '<div class="vis-loading"><div class="spin"></div>Fetching visitor data…</div>';
-  document.getElementById('vis-breakdowns').innerHTML = '';
-  document.getElementById('vis-chart-card').style.display = 'none';
-}
-
-/* ── main render ── */
-function renderAll(data) {
-  renderStatCards(data);
-  renderChart(data);
-  renderBreakdowns(data);
-}
-
-/* ── stat cards ── */
+/* ── Stat cards ── */
 function renderStatCards(data) {
   var total     = data.length;
   var employees = data.filter(function(r){ return r.is_employee; }).length;
   var students  = total - employees;
 
-  // peak hour
-  var hourCounts = {};
-  data.forEach(function(r){
-    var h = new Date(r.visited_at).getHours();
-    hourCounts[h] = (hourCounts[h]||0) + 1;
-  });
-  var peakHour = '-';
-  var peakCount = 0;
-  Object.keys(hourCounts).forEach(function(h){
-    if (hourCounts[h] > peakCount) { peakCount = hourCounts[h]; peakHour = h; }
-  });
-  if (peakHour !== '-') {
-    var ph = parseInt(peakHour);
-    peakHour = (ph % 12 || 12) + (ph < 12 ? 'am' : 'pm');
-  }
+  var hmap = {};
+  data.forEach(function(r){ var h=new Date(r.visited_at).getHours(); hmap[h]=(hmap[h]||0)+1; });
+  var peakHour='-', peakVal=0;
+  Object.keys(hmap).forEach(function(h){ if(hmap[h]>peakVal){peakVal=hmap[h];peakHour=h;} });
+  if (peakHour!=='-') { var ph=parseInt(peakHour); peakHour=(ph%12||12)+(ph<12?'am':'pm'); }
 
-  // unique dates (for avg)
-  var days = {};
-  data.forEach(function(r){ days[r.visited_at.slice(0,10)] = 1; });
-  var dayCount = Object.keys(days).length || 1;
-  var avg = (total / dayCount).toFixed(1);
+  var days={};
+  data.forEach(function(r){ days[r.visited_at.slice(0,10)]=1; });
+  var avg=(total/(Object.keys(days).length||1)).toFixed(1);
 
-  // top reason
-  var reasonCounts = countBy(data, 'reason');
-  var topReason = topKey(reasonCounts) || '—';
+  var rc=countBy(data,'reason');
+  var topR=topKey(rc)||'—';
 
-  // top college
-  var collegeCounts = countBy(data, 'college');
-  var topCollege = topKey(collegeCounts) || '—';
-
-  var cards = [
-    { icon:'👥', label:'Total Visitors', value: total,     sub:'in selected period',    accent:'accent-green'  },
-    { icon:'🎓', label:'Students',        value: students,  sub:'non-employee visitors', accent:'accent-blue'   },
-    { icon:'👔', label:'Employees',       value: employees, sub:'faculty & staff',       accent:'accent-purple' },
-    { icon:'⏰', label:'Peak Hour',       value: peakHour,  sub:'highest traffic',       accent:'accent-orange' },
-    { icon:'📈', label:'Daily Avg',       value: avg,       sub:'visitors per day',      accent:'accent-teal'   },
-    { icon:'📌', label:'Top Reason',      value: topReason, sub: total ? reasonCounts[topReason] + ' visits' : '', accent:'accent-yellow' },
+  var cards=[
+    {icon:'👥', label:'Total Visitors', value:total,    sub:'in selected period',    acc:'acc-green'},
+    {icon:'🎓', label:'Students',       value:students,  sub:'non-employee visitors', acc:'acc-blue'},
+    {icon:'👔', label:'Employees',      value:employees, sub:'faculty & staff',       acc:'acc-purple'},
+    {icon:'⏰', label:'Peak Hour',      value:peakHour,  sub:'highest traffic',       acc:'acc-orange'},
+    {icon:'📈', label:'Daily Avg',      value:avg,       sub:'visitors per day',      acc:'acc-teal'},
+    {icon:'📌', label:'Top Reason',     value:topR,      sub:total?(rc[topR]+' visits'):'', acc:'acc-yellow'},
   ];
 
-  var html = '';
-  cards.forEach(function(c){
-    html += '<div class="vis-stat-card ' + c.accent + '">';
-    html += '<span class="card-icon">' + c.icon + '</span>';
-    html += '<div class="card-label">' + c.label + '</div>';
-    html += '<div class="card-value">' + c.value + '</div>';
-    html += '<div class="card-sub">'   + c.sub   + '</div>';
-    html += '</div>';
-  });
-
-  document.getElementById('vis-stat-cards').innerHTML = html;
+  document.getElementById('vis-stat-cards').innerHTML = cards.map(function(c){
+    return '<div class="vis-stat-card '+c.acc+'">'
+      +'<span class="card-icon">'+c.icon+'</span>'
+      +'<div class="card-label">'+c.label+'</div>'
+      +'<div class="card-value">'+c.value+'</div>'
+      +'<div class="card-sub">'+c.sub+'</div>'
+      +'</div>';
+  }).join('');
 }
 
-/* ── trend chart ── */
+/* ── Chart ── */
 function renderChart(data) {
   var card = document.getElementById('vis-chart-card');
+  if (!data.length) { card.style.display='none'; return; }
+  card.style.display='block';
 
-  if (!data.length) { card.style.display = 'none'; return; }
-  card.style.display = 'block';
-
-  // bucket by date
+  var dates  = getRangeDates();
   var dayMap = {};
-  data.forEach(function(r){
-    var d = r.visited_at.slice(0,10);
-    dayMap[d] = (dayMap[d]||0) + 1;
-  });
+  data.forEach(function(r){ var d=r.visited_at.slice(0,10); dayMap[d]=(dayMap[d]||0)+1; });
 
-  // fill all days in range
-  var dates = getRangeDates(currentRange);
-  var labels = [], counts = [];
-  var cur = new Date(dates.from);
-  cur.setHours(0,0,0,0);
-  var endD = new Date(dates.to);
-  while (cur <= endD) {
-    var key = dateStr(cur);
-    labels.push(key.slice(5)); // MM-DD
+  var labels=[], counts=[];
+  var cur=new Date(dates.from); cur.setHours(0,0,0,0);
+  while (cur<=dates.to) {
+    var key=dateStr(cur);
+    labels.push(key.slice(5));
     counts.push(dayMap[key]||0);
     cur.setDate(cur.getDate()+1);
   }
 
-  // single day → show by hour instead
-  if (labels.length <= 1) {
-    var hourMap = {};
-    for (var hh = 0; hh < 24; hh++) hourMap[hh] = 0;
-    data.forEach(function(r){ var h = new Date(r.visited_at).getHours(); hourMap[h]++; });
-    labels = Object.keys(hourMap).map(function(h){ return (parseInt(h)%12||12) + (parseInt(h)<12?'am':'pm'); });
-    counts = Object.values(hourMap);
+  // single day → show hourly
+  if (labels.length<=1) {
+    var hmap={}; for(var h=0;h<24;h++) hmap[h]=0;
+    data.forEach(function(r){ hmap[new Date(r.visited_at).getHours()]++; });
+    labels=Object.keys(hmap).map(function(h){ var p=parseInt(h); return (p%12||12)+(p<12?'am':'pm'); });
+    counts=Object.values(hmap);
   }
 
-  var ctx = document.getElementById('vis-chart').getContext('2d');
-  if (visChart) { visChart.destroy(); }
-
-  visChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Visitors',
-        data: counts,
-        backgroundColor: 'rgba(76,175,128,0.35)',
-        borderColor: 'rgba(76,175,128,0.85)',
-        borderWidth: 1.5,
-        borderRadius: 4,
-        hoverBackgroundColor: 'rgba(76,175,128,0.55)',
+  var ctx=document.getElementById('vis-chart').getContext('2d');
+  if (visChart) visChart.destroy();
+  visChart=new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels:labels,
+      datasets:[{
+        label:'Visitors', data:counts,
+        backgroundColor:'rgba(76,175,128,0.35)',
+        borderColor:'rgba(76,175,128,0.85)',
+        borderWidth:1.5, borderRadius:4,
+        hoverBackgroundColor:'rgba(76,175,128,0.55)'
       }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#0e1f33',
-          borderColor: 'rgba(76,175,128,0.4)',
-          borderWidth: 1,
-          titleColor: '#fff',
-          bodyColor: 'rgba(255,255,255,0.7)',
-          padding: 10,
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#0e1f33', borderColor:'rgba(76,175,128,0.4)',
+          borderWidth:1, titleColor:'#fff', bodyColor:'rgba(255,255,255,0.7)', padding:10
         }
       },
-      scales: {
-        x: {
-          ticks: { color: 'rgba(255,255,255,0.35)', font: { size: 11 } },
-          grid: { color: 'rgba(255,255,255,0.04)' }
-        },
-        y: {
-          ticks: { color: 'rgba(255,255,255,0.35)', font: { size: 11 }, stepSize: 1 },
-          grid: { color: 'rgba(255,255,255,0.06)' },
-          beginAtZero: true
-        }
+      scales:{
+        x:{ticks:{color:'rgba(255,255,255,0.35)',font:{size:11}},grid:{color:'rgba(255,255,255,0.04)'}},
+        y:{ticks:{color:'rgba(255,255,255,0.35)',font:{size:11},stepSize:1},grid:{color:'rgba(255,255,255,0.06)'},beginAtZero:true}
       }
     }
   });
 }
 
-/* ── breakdown cards ── */
+/* ── Breakdowns ── */
 function renderBreakdowns(data) {
-  var container = document.getElementById('vis-breakdowns');
-
+  var el=document.getElementById('vis-breakdowns');
   if (!data.length) {
-    container.innerHTML = '<div class="no-data-msg"><div class="icon">🔍</div>No visitor data for this period.</div>';
+    el.innerHTML='<div class="no-data-msg" style="grid-column:1/-1"><div class="nd-icon">🔍</div>No visitor data for this period.</div>';
     return;
   }
-
-  var reasonCounts  = countBy(data, 'reason');
-  var collegeCounts = countBy(data, 'college');
-
-  container.innerHTML =
-    buildBreakdownCard('📋', 'Reason for Visit', reasonCounts, '#4caf80') +
-    buildBreakdownCard('🏫', 'College / Department', collegeCounts, '#90caf9');
+  el.innerHTML =
+    buildBreakdown('📋','Reason for Visit',    countBy(data,'reason'))+
+    buildBreakdown('🏫','College / Department', countBy(data,'college'));
 }
 
-function buildBreakdownCard(icon, title, counts, color) {
-  var entries = Object.entries(counts).sort(function(a,b){ return b[1]-a[1]; });
-  var max = entries.length ? entries[0][1] : 1;
-
+function buildBreakdown(icon, title, counts) {
+  var entries=Object.entries(counts).sort(function(a,b){return b[1]-a[1];});
+  var max=entries.length ? entries[0][1] : 1;
   if (!entries.length) {
-    return '<div class="breakdown-card"><div class="bc-head"><span class="bc-icon">' + icon + '</span>' + title + '</div><div class="breakdown-list"><div class="no-data-msg" style="padding:20px">No data.</div></div></div>';
+    return '<div class="breakdown-card"><div class="bc-head"><span class="bc-icon">'+icon+'</span>'+title+'</div>'
+          +'<div class="breakdown-list"><div class="no-data-msg" style="padding:20px">No data.</div></div></div>';
   }
-
-  var rows = '';
-  entries.forEach(function(e, i){
-    var pct = Math.round((e[1]/max)*100);
-    var barColor = BAR_COLORS[i % BAR_COLORS.length];
-    rows += '<div class="bd-row">';
-    rows += '<div class="bd-label">' + (e[0]||'Unknown') + '</div>';
-    rows += '<div class="bd-bar-wrap"><div class="bd-bar" style="width:' + pct + '%;background:' + barColor + '"></div></div>';
-    rows += '<div class="bd-count">' + e[1] + '</div>';
-    rows += '</div>';
-  });
-
-  return '<div class="breakdown-card"><div class="bc-head"><span class="bc-icon">' + icon + '</span>' + title + '</div><div class="breakdown-list">' + rows + '</div></div>';
+  var rows=entries.map(function(e,i){
+    var pct=Math.round((e[1]/max)*100);
+    return '<div class="bd-row">'
+      +'<div class="bd-label">'+(e[0]||'Unknown')+'</div>'
+      +'<div class="bd-bar-wrap"><div class="bd-bar" style="width:'+pct+'%;background:'+BAR_COLORS[i%BAR_COLORS.length]+'"></div></div>'
+      +'<div class="bd-count">'+e[1]+'</div>'
+      +'</div>';
+  }).join('');
+  return '<div class="breakdown-card"><div class="bc-head"><span class="bc-icon">'+icon+'</span>'+title+'</div>'
+        +'<div class="breakdown-list">'+rows+'</div></div>';
 }
 
-/* ── helpers ── */
-function countBy(arr, key) {
-  var out = {};
-  arr.forEach(function(r){ var v = r[key]||'Unknown'; out[v]=(out[v]||0)+1; });
+/* ── Helpers ── */
+function countBy(arr,key){
+  var out={};
+  arr.forEach(function(r){ var v=r[key]||'Unknown'; out[v]=(out[v]||0)+1; });
   return out;
 }
-
-function topKey(obj) {
-  var best = null, bestVal = 0;
-  Object.keys(obj).forEach(function(k){ if (obj[k]>bestVal){ bestVal=obj[k]; best=k; } });
+function topKey(obj){
+  var best=null, bv=0;
+  Object.keys(obj).forEach(function(k){ if(obj[k]>bv){bv=obj[k];best=k;} });
   return best;
 }
 
+/* ── Boot ── */
+fetchUsers();
+fetchVisitorCounts();
 </script>
 </body>
 </html>
