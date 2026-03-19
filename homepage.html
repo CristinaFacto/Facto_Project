@@ -21,277 +21,95 @@
       --input-bg: #f8fafc;
     }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-    }
+    body { font-family: 'DM Sans', sans-serif; min-height: 100vh; background: var(--bg); color: var(--text); padding-top: 56px; }
 
-    .bg-image {
-      position: fixed; inset: 0; z-index: 0;
-      background-image: url('https://media.licdn.com/dms/image/v2/C561BAQGUxB_pssZkJA/company-background_10000/company-background_10000/0/1591598531597/new_era_university_official_cover?e=2147483647&v=beta&t=F_JgSz6bKmQ4QdmSivXkthtoQ-7j0KNvpoWiwut8y8A');
-      background-size: cover; background-position: center;
-      filter: brightness(0.13);
-    }
+    .bg-image { position: fixed; inset: 0; z-index: 0; background-image: url('https://media.licdn.com/dms/image/v2/C561BAQGUxB_pssZkJA/company-background_10000/company-background_10000/0/1591598531597/new_era_university_official_cover?e=2147483647&v=beta&t=F_JgSz6bKmQ4QdmSivXkthtoQ-7j0KNvpoWiwut8y8A'); background-size: cover; background-position: center; filter: brightness(0.13); }
 
-    /* ── Navbar ── */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; height: 56px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 28px;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      z-index: 50;
-    }
-
+    .navbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; background: var(--white); border-bottom: 1px solid var(--border); z-index: 50; }
     .nav-brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
-    .nav-logo  { width: 30px; height: 30px; border-radius: 6px; overflow: hidden; }
+    .nav-logo { width: 30px; height: 30px; border-radius: 6px; overflow: hidden; }
     .nav-logo img { width: 100%; height: 100%; object-fit: contain; }
     .nav-title { font-size: 15px; font-weight: 700; color: var(--text); }
     .nav-title span { color: var(--green); }
-
     .nav-right { display: flex; align-items: center; gap: 10px; }
 
-    /* admin toggle */
     #admin-toggle-wrap { display: none; }
     .toggle-wrap { display: flex; align-items: center; gap: 7px; cursor: pointer; }
     .toggle-label { font-size: 13px; font-weight: 500; color: var(--muted); }
-    .toggle-switch {
-      width: 38px; height: 21px;
-      background: #e2e8f0;
-      border-radius: 20px; position: relative;
-      transition: background 0.25s; cursor: pointer;
-    }
+    .toggle-switch { width: 38px; height: 21px; background: #e2e8f0; border-radius: 20px; position: relative; transition: background 0.25s; cursor: pointer; }
     .toggle-switch.on { background: var(--green); }
-    .toggle-knob {
-      position: absolute; top: 3px; left: 3px;
-      width: 15px; height: 15px;
-      background: #fff; border-radius: 50%;
-      transition: left 0.25s;
-    }
+    .toggle-knob { position: absolute; top: 3px; left: 3px; width: 15px; height: 15px; background: #fff; border-radius: 50%; transition: left 0.25s; }
     .toggle-switch.on .toggle-knob { left: 20px; }
 
-    .logout-btn {
-      padding: 7px 16px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px; font-weight: 600;
-      color: var(--muted); cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
+    .logout-btn { padding: 7px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; transition: background 0.2s, color 0.2s; }
     .logout-btn:hover { background: var(--border); color: var(--text); }
 
-    /* ── Main content (centered, same as before) ── */
-    body { padding-top: 56px; }
-
-    .main-wrapper {
-      min-height: calc(100vh - 56px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px;
-      position: relative; z-index: 1;
-    }
-
+    .main-wrapper { min-height: calc(100vh - 56px); display: flex; align-items: center; justify-content: center; padding: 24px; position: relative; z-index: 1; }
     .main-content { text-align: center; }
 
-    .school-logo {
-      width: 80px; height: 80px;
-      border-radius: 0;
-      overflow: hidden;
-      margin: 0 auto 24px;
-    }
+    .school-logo { width: 80px; height: 80px; border-radius: 0; overflow: hidden; margin: 0 auto 24px; }
     .school-logo img { width: 100%; height: 100%; object-fit: contain; }
 
-    .school-label {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--green-light); margin-bottom: 14px;
-    }
-
-    .main-title {
-      font-size: clamp(28px, 5vw, 50px);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.15; margin-bottom: 10px;
-    }
-
+    .school-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green-light); margin-bottom: 14px; }
+    .main-title { font-size: clamp(28px, 5vw, 50px); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 10px; }
     .main-title em { font-style: italic; color: var(--green-light); }
+    .school-year { font-size: 13.5px; font-weight: 400; color: rgba(255,255,255,0.4); letter-spacing: 0.5px; margin-bottom: 28px; }
 
-    .school-year {
-      font-size: 13.5px; font-weight: 400;
-      color: rgba(255,255,255,0.4); letter-spacing: 0.5px;
-      margin-bottom: 28px;
-    }
-
-    .greeting {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(76,175,128,0.12);
-      border: 1px solid rgba(76,175,128,0.25);
-      border-radius: 20px; padding: 8px 18px;
-      font-size: 13px; font-weight: 600;
-      color: var(--green-light);
-      opacity: 0; transition: opacity .4s;
-    }
+    .greeting { display: inline-flex; align-items: center; gap: 8px; background: rgba(76,175,128,0.12); border: 1px solid rgba(76,175,128,0.25); border-radius: 20px; padding: 8px 18px; font-size: 13px; font-weight: 600; color: var(--green-light); opacity: 0; transition: opacity .4s; }
     .greeting.visible { opacity: 1; }
-    .greeting .dot {
-      width: 7px; height: 7px;
-      border-radius: 50%; background: var(--green-light);
-      animation: pulse 2s infinite;
-    }
+    .greeting .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-light); animation: pulse 2s infinite; }
 
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(0.85)} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 
-    /* ── Modal ── */
-    .modal-overlay {
-      position: fixed; inset: 0; z-index: 100;
-      background: rgba(15,23,42,0.4);
-      backdrop-filter: blur(4px);
-      display: flex; align-items: center; justify-content: center; padding: 20px;
-      opacity: 0; pointer-events: none; transition: opacity .3s ease;
-    }
+    .modal-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(15,23,42,0.4); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
     .modal-overlay.open { opacity: 1; pointer-events: all; }
 
-    .modal {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      width: min(500px, 100%);
-      max-height: 92vh; overflow-y: auto;
-      padding: 32px 28px;
-      position: relative;
-      transform: translateY(20px) scale(0.98);
-      transition: transform .38s cubic-bezier(.34,1.2,.64,1);
-    }
-
+    .modal { background: var(--white); border: 1px solid var(--border); border-radius: 16px; width: min(500px, 100%); max-height: 92vh; overflow-y: auto; padding: 32px 28px; position: relative; transform: translateY(20px) scale(0.98); transition: transform .38s cubic-bezier(.34,1.2,.64,1); }
     .modal-overlay.open .modal { transform: translateY(0) scale(1); }
 
-    .modal-icon {
-      width: 50px; height: 50px;
-      border-radius: 12px;
-      background: #e8f5e9;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px; margin-bottom: 16px;
-    }
-
-    .modal h2 {
-      font-size: 20px; font-weight: 700;
-      color: var(--text); margin-bottom: 6px;
-    }
-
+    .modal-icon { width: 50px; height: 50px; border-radius: 12px; background: #e8f5e9; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; }
+    .modal h2 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
     .modal h2 em { font-style: italic; color: var(--green); }
+    .modal-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; line-height: 1.6; }
 
-    .modal-sub {
-      font-size: 13px; color: var(--muted);
-      margin-bottom: 22px; line-height: 1.6;
-    }
-
-    .datetime-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px; padding: 10px 14px; margin-bottom: 18px;
-      font-size: 12.5px; color: var(--muted);
-    }
+    .datetime-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 18px; font-size: 12.5px; color: var(--muted); }
     .datetime-badge strong { color: var(--text); font-weight: 600; }
 
     .field { margin-bottom: 14px; }
-    .field label {
-      display: block; font-size: 11px; font-weight: 700;
-      letter-spacing: 0.5px; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 7px;
-    }
+    .field label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
     .field label .req { color: var(--green); margin-left: 2px; }
-
-    .field input[type="text"],
-    .field select {
-      width: 100%;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px; padding: 11px 14px;
-      font-size: 13.5px; color: var(--text);
-      font-family: 'DM Sans', sans-serif; outline: none;
-      transition: border-color .18s; -webkit-appearance: none;
-    }
+    .field input[type="text"], .field select { width: 100%; background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; padding: 11px 14px; font-size: 13.5px; color: var(--text); font-family: 'DM Sans', sans-serif; outline: none; transition: border-color .18s; -webkit-appearance: none; }
     .field input[type="text"]::placeholder { color: #94a3b8; }
-    .field input[type="text"]:focus,
-    .field select:focus { border-color: var(--green-light); background: #fff; }
+    .field input[type="text"]:focus, .field select:focus { border-color: var(--green-light); background: #fff; }
     .field select option { background: #fff; color: var(--text); }
-
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-    /* employee toggle row */
-    .toggle-row {
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px; padding: 13px 16px; margin-bottom: 14px;
-      cursor: pointer; transition: border-color .18s; user-select: none;
-    }
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; padding: 13px 16px; margin-bottom: 14px; cursor: pointer; transition: border-color .18s; user-select: none; }
     .toggle-row:hover { border-color: #94a3b8; }
     .toggle-row.on { border-color: var(--green-light); background: #f0fdf4; }
     .toggle-info strong { display: block; font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-    .toggle-info span   { font-size: 11.5px; color: var(--muted); }
-
-    .toggle-switch-inner {
-      width: 40px; height: 22px; border-radius: 20px;
-      background: #cbd5e0; position: relative; flex-shrink: 0;
-      transition: background .22s;
-    }
-    .toggle-switch-inner::after {
-      content: ''; position: absolute; top: 3px; left: 3px;
-      width: 16px; height: 16px; border-radius: 50%;
-      background: #fff; transition: transform .22s;
-    }
+    .toggle-info span { font-size: 11.5px; color: var(--muted); }
+    .toggle-switch-inner { width: 40px; height: 22px; border-radius: 20px; background: #cbd5e0; position: relative; flex-shrink: 0; transition: background .22s; }
+    .toggle-switch-inner::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .22s; }
     .toggle-row.on .toggle-switch-inner { background: var(--green); }
     .toggle-row.on .toggle-switch-inner::after { transform: translateX(18px); }
 
-    .btn-submit {
-      width: 100%; padding: 13px;
-      background: var(--green); border: none; border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px; font-weight: 700; color: #fff;
-      cursor: pointer; margin-top: 6px;
-      transition: background .18s, transform .15s;
-    }
-    .btn-submit:hover  { background: var(--green-dark); }
+    .btn-submit { width: 100%; padding: 13px; background: var(--green); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; color: #fff; cursor: pointer; margin-top: 6px; transition: background .18s, transform .15s; }
+    .btn-submit:hover { background: var(--green-dark); }
     .btn-submit:active { transform: scale(0.98); }
     .btn-submit:disabled { opacity: .5; cursor: not-allowed; }
 
-    /* success */
     .success-view { display: none; text-align: center; padding: 12px 0 8px; }
     .success-view.show { display: block; }
-    .success-icon {
-      width: 68px; height: 68px; border-radius: 50%;
-      background: #e8f5e9; border: 2px solid #a5d6a7;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 30px; margin: 0 auto 20px;
-      animation: popIn .5s cubic-bezier(.34,1.6,.64,1) both;
-    }
+    .success-icon { width: 68px; height: 68px; border-radius: 50%; background: #e8f5e9; border: 2px solid #a5d6a7; display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 20px; animation: popIn .5s cubic-bezier(.34,1.6,.64,1) both; }
     @keyframes popIn { from{transform:scale(0.4);opacity:0} to{transform:scale(1);opacity:1} }
     .success-view h3 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-    .success-view p  { font-size: 13.5px; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
-    .btn-enter {
-      display: inline-block; padding: 12px 36px;
-      background: var(--green); border: none; border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px; font-weight: 700; color: #fff;
-      cursor: pointer; transition: background .18s;
-    }
+    .success-view p { font-size: 13.5px; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
+    .btn-enter { display: inline-block; padding: 12px 36px; background: var(--green); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; color: #fff; cursor: pointer; transition: background .18s; }
     .btn-enter:hover { background: var(--green-dark); }
 
-    /* toast */
-    .toast {
-      position: fixed; bottom: 24px; left: 50%;
-      transform: translateX(-50%) translateY(60px);
-      background: var(--text);
-      color: #fff; padding: 11px 24px; border-radius: 10px;
-      font-size: 13px; font-weight: 500;
-      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
-      z-index: 999; white-space: nowrap;
-    }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(60px); background: var(--text); color: #fff; padding: 11px 24px; border-radius: 10px; font-size: 13px; font-weight: 500; transition: transform .35s cubic-bezier(.34,1.56,.64,1); z-index: 999; white-space: nowrap; }
     .toast.show { transform: translateX(-50%) translateY(0); }
     .toast.error { background: #dc2626; }
 
@@ -339,19 +157,15 @@
     </div>
   </div>
 
-  <!-- VISITOR LOG MODAL -->
   <div class="modal-overlay" id="modal-overlay">
     <div class="modal">
-
       <div id="form-view">
         <div class="modal-icon">📋</div>
         <h2>Library <em>Visit Log</em></h2>
         <p class="modal-sub">Please fill in your details before entering. This helps us track library usage and serve you better.</p>
-
         <div class="datetime-badge">
           🕐 &nbsp;<strong id="log-datetime">—</strong>
         </div>
-
         <div class="field-row">
           <div class="field">
             <label>First Name <span class="req">*</span></label>
@@ -362,7 +176,6 @@
             <input type="text" id="f-lastname" placeholder="e.g. dela Cruz" />
           </div>
         </div>
-
         <div class="field">
           <label>College / Department <span class="req">*</span></label>
           <select id="f-college">
@@ -378,7 +191,6 @@
             <option value="Staff / Admin">Staff / Admin</option>
           </select>
         </div>
-
         <div class="field">
           <label>Reason for Visit <span class="req">*</span></label>
           <select id="f-reason">
@@ -391,7 +203,6 @@
             <option>Other</option>
           </select>
         </div>
-
         <div class="toggle-row" id="emp-toggle" onclick="toggleEmployee()">
           <div class="toggle-info">
             <strong>I am a faculty member or staff</strong>
@@ -399,19 +210,16 @@
           </div>
           <div class="toggle-switch-inner"></div>
         </div>
-
         <button class="btn-submit" id="submit-btn" onclick="submitLog()">
           Log My Visit &amp; Enter Library
         </button>
       </div>
-
       <div class="success-view" id="success-view">
         <div class="success-icon">✓</div>
         <h3>Visit Logged!</h3>
         <p id="success-msg">Your visit has been recorded. Welcome to the NEU Library.</p>
         <button class="btn-enter" onclick="dismissModal()">Enter Library →</button>
       </div>
-
     </div>
   </div>
 
