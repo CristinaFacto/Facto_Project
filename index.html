@@ -19,31 +19,11 @@
       --gray-text: rgba(255,255,255,0.48);
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #081525;
-    }
+    body { font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #081525; }
 
-    .bg-overlay {
-      position: fixed; inset: 0; z-index: 0;
-      background-image: url('https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/477579626_122108352272743934_80451274266931311_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=2a1932&_nc_eui2=AeFyZwIwgtViJCMy2J6O7hmfmfYDj1U4U5CZ9gOPVThTkCzSwUgeI6I9R9NPckGCkFdAtUbbWy5Vrl0Fce6mrFMe&_nc_ohc=d46thpZOUxAQ7kNvwHwcinm&_nc_oc=Adl0xD0B5Z7G0rMyRnEVR2aOJLhQTnIfgITEM2b5ifXYZ8W9zUvSk8GKMTbqY8lPCH8&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=TXQM_neduF7SDoxkA6-vog&_nc_ss=8&oh=00_AfxbLy76P_6rWbjToop7NR1I6QUi-BUWsLtik-3wfbxjZQ&oe=69BBD6BC');
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.30);
-    }
+    .bg-overlay { position: fixed; inset: 0; z-index: 0; background-image: url('https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/477579626_122108352272743934_80451274266931311_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=2a1932&_nc_eui2=AeFyZwIwgtViJCMy2J6O7hmfmfYDj1U4U5CZ9gOPVThTkCzSwUgeI6I9R9NPckGCkFdAtUbbWy5Vrl0Fce6mrFMe&_nc_ohc=d46thpZOUxAQ7kNvwHwcinm&_nc_oc=Adl0xD0B5Z7G0rMyRnEVR2aOJLhQTnIfgITEM2b5ifXYZ8W9zUvSk8GKMTbqY8lPCH8&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=TXQM_neduF7SDoxkA6-vog&_nc_ss=8&oh=00_AfxbLy76P_6rWbjToop7NR1I6QUi-BUWsLtik-3wfbxjZQ&oe=69BBD6BC'); background-size: cover; background-position: center; filter: brightness(0.30); }
 
-    .card {
-      position: relative; z-index: 10;
-      width: min(440px, 92vw);
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 36px 38px;
-      border: 1px solid rgba(255,255,255,0.07);
-    }
+    .card { position: relative; z-index: 10; width: min(440px, 92vw); background: var(--card-bg); border-radius: 12px; padding: 36px 38px; border: 1px solid rgba(255,255,255,0.07); }
 
     .brand { display: flex; align-items: center; gap: 11px; margin-bottom: 26px; }
     .brand-logo { width: 40px; height: 40px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
@@ -54,12 +34,7 @@
     .divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 24px; }
 
     .tab-row { display: flex; border-bottom: 1px solid rgba(255,255,255,0.10); margin-bottom: 24px; }
-    .tab-btn {
-      flex: 1; padding: 9px 0; text-align: center; font-size: 13.5px; font-weight: 500;
-      color: var(--gray-text); cursor: pointer; border: none; background: transparent;
-      border-bottom: 2px solid transparent; margin-bottom: -1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
+    .tab-btn { flex: 1; padding: 9px 0; text-align: center; font-size: 13.5px; font-weight: 500; color: var(--gray-text); cursor: pointer; border: none; background: transparent; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s, border-color 0.2s; }
     .tab-btn.active { color: #fff; border-bottom-color: var(--green); }
     .tab-btn:hover:not(.active) { color: rgba(255,255,255,0.70); }
 
@@ -72,26 +47,15 @@
 
     .field { display: flex; flex-direction: column; margin-bottom: 16px; }
     .field label { font-size: 11px; font-weight: 500; color: var(--gray-text); letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 6px; }
-    .field input,
-    .field select {
-      background: var(--input-bg); border: 1px solid var(--input-border);
-      border-radius: 7px; padding: 10px 13px; font-size: 13.5px; color: #fff;
-      font-family: 'Inter', sans-serif; outline: none; -webkit-appearance: none;
-      width: 100%; transition: border-color 0.18s;
-    }
-    .field select option  { background: #0e1f33; color: #fff; }
+    .field input, .field select { background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 7px; padding: 10px 13px; font-size: 13.5px; color: #fff; font-family: 'Inter', sans-serif; outline: none; -webkit-appearance: none; width: 100%; transition: border-color 0.18s; }
+    .field select option { background: #0e1f33; color: #fff; }
     .field select optgroup { background: #0e1f33; color: rgba(255,255,255,0.60); font-style: normal; font-weight: 600; }
     .field input::placeholder { color: rgba(255,255,255,0.22); }
     .field input:focus, .field select:focus { border-color: rgba(255,255,255,0.35); }
 
     .pw-field { position: relative; }
     .pw-field input { padding-right: 48px; }
-    .show-pw {
-      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-      background: none; border: none; cursor: pointer;
-      color: rgba(255,255,255,0.38); font-size: 11px;
-      font-family: 'Inter', sans-serif; font-weight: 500; padding: 0; line-height: 1;
-    }
+    .show-pw { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.38); font-size: 11px; font-family: 'Inter', sans-serif; font-weight: 500; padding: 0; line-height: 1; }
     .show-pw:hover { color: rgba(255,255,255,0.70); }
 
     .select-field { position: relative; }
@@ -100,13 +64,7 @@
 
     .role-title { font-size: 11px; font-weight: 500; color: var(--gray-text); letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 7px; }
     .role-group { display: flex; gap: 8px; margin-bottom: 16px; }
-    .role-option {
-      flex: 1; padding: 9px 6px; background: transparent;
-      border: 1px solid var(--input-border); border-radius: 7px;
-      font-size: 12.5px; font-weight: 500; font-family: 'Inter', sans-serif;
-      color: rgba(255,255,255,0.42); cursor: pointer;
-      transition: border-color 0.18s, color 0.18s;
-    }
+    .role-option { flex: 1; padding: 9px 6px; background: transparent; border: 1px solid var(--input-border); border-radius: 7px; font-size: 12.5px; font-weight: 500; font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.42); cursor: pointer; transition: border-color 0.18s, color 0.18s; }
     .role-option.selected { border-color: var(--green); color: #4caf80; }
 
     .terms-row { display: flex; align-items: center; gap: 9px; margin-bottom: 20px; }
@@ -117,24 +75,11 @@
     .forgot-link { text-align: right; margin-bottom: 16px; }
     .forgot-link a { font-size: 12px; color: var(--blue); text-decoration: none; }
 
-    .submit-btn {
-      width: 100%; padding: 11px; background: var(--green); border: none;
-      border-radius: 7px; font-family: 'Inter', sans-serif;
-      font-size: 14px; font-weight: 600; color: #fff; cursor: pointer;
-      transition: background 0.18s, opacity 0.18s;
-    }
+    .submit-btn { width: 100%; padding: 11px; background: var(--green); border: none; border-radius: 7px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #fff; cursor: pointer; transition: background 0.18s, opacity 0.18s; }
     .submit-btn:hover { background: var(--green-dark); }
     .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
-    .toast {
-      position: fixed; bottom: 24px; left: 50%;
-      transform: translateX(-50%) translateY(70px);
-      background: #1b3a28; border: 1px solid var(--green);
-      color: #fff; padding: 11px 24px; border-radius: 7px;
-      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px;
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
-      z-index: 999; white-space: nowrap;
-    }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(70px); background: #1b3a28; border: 1px solid var(--green); color: #fff; padding: 11px 24px; border-radius: 7px; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px; transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); z-index: 999; white-space: nowrap; }
     .toast.error { background: #3a1b1b; border-color: #c0392b; }
     .toast.show { transform: translateX(-50%) translateY(0); }
 
@@ -146,11 +91,8 @@
   <div class="bg-overlay"></div>
 
   <div class="card">
-
     <div class="brand">
-      <div class="brand-logo">
-        <img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" />
-      </div>
+      <div class="brand-logo"><img src="https://neu.edu.ph/main/img/neu.png" alt="NEU Logo" /></div>
       <div class="brand-text">
         New Era University
         <span>Library</span>
@@ -164,16 +106,13 @@
       <button class="tab-btn" onclick="showTab('register')">Register</button>
     </div>
 
-    <!-- LOGIN -->
     <div class="form-panel active" id="panel-login">
       <div class="form-heading">Sign in</div>
       <div class="form-note">No account? <a href="#" onclick="showTab('register'); return false;">Register here</a></div>
-
       <div class="field">
         <label>Institutional Email</label>
         <input type="email" id="login-email" placeholder="juan@neu.edu.ph" onkeydown="if(event.key==='Enter') doLogin()" />
       </div>
-
       <div class="field">
         <label>Password</label>
         <div class="pw-field">
@@ -181,32 +120,26 @@
           <button class="show-pw" onclick="togglePassword('login-pw', this)" type="button">Show</button>
         </div>
       </div>
-
       <div class="forgot-link"><a href="#">Forgot password?</a></div>
       <button class="submit-btn" id="login-btn" onclick="doLogin()">Log In</button>
     </div>
 
-    <!-- REGISTER -->
     <div class="form-panel" id="panel-register">
       <div class="form-heading">Create account</div>
       <div class="form-note">Already registered? <a href="#" onclick="showTab('login'); return false;">Log in</a></div>
-
       <div class="role-title">I am a</div>
       <div class="role-group">
         <button class="role-option selected" id="role-student" onclick="changeRole('student')">Student</button>
         <button class="role-option" id="role-faculty" onclick="changeRole('faculty')">Faculty</button>
       </div>
-
       <div class="field">
         <label>Full Name</label>
         <input type="text" id="reg-name" placeholder="Juan Dela Cruz" />
       </div>
-
       <div class="field">
         <label>Institutional Email</label>
         <input type="email" id="reg-email" placeholder="jdelacruz@neu.edu.ph" />
       </div>
-
       <div class="field">
         <label id="college-label">Program / College</label>
         <div class="select-field">
@@ -244,7 +177,6 @@
           </select>
         </div>
       </div>
-
       <div class="field">
         <label>Password</label>
         <div class="pw-field">
@@ -252,7 +184,6 @@
           <button class="show-pw" onclick="togglePassword('reg-pw', this)" type="button">Show</button>
         </div>
       </div>
-
       <div class="field">
         <label>Confirm Password</label>
         <div class="pw-field">
@@ -260,15 +191,12 @@
           <button class="show-pw" onclick="togglePassword('reg-pw2', this)" type="button">Show</button>
         </div>
       </div>
-
       <div class="terms-row">
         <input type="checkbox" id="terms" />
         <label for="terms">I agree to the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a></label>
       </div>
-
       <button class="submit-btn" id="reg-btn" onclick="doRegister()">Create Account</button>
     </div>
-
   </div>
 
   <div class="toast" id="toast"></div>
@@ -280,7 +208,6 @@
 
     var toastTimer;
 
-    /* ── Auto-redirect if already logged in ── */
     (async function checkSession() {
       var result = await db.auth.getSession();
       if (!result.data.session) return;
@@ -428,6 +355,5 @@
       setTimeout(function() { showTab('login'); }, 2500);
     }
   </script>
-
 </body>
 </html>
