@@ -1,4 +1,4 @@
-# Facto_Project
+# Project in Information Management 2
 
 - Email: jcesperanza@neu.edu.ph
 - Password: adm1n22
