@@ -166,30 +166,10 @@
         <div class="datetime-badge">
           🕐 &nbsp;<strong id="log-datetime">—</strong>
         </div>
-        <div class="field-row">
-          <div class="field">
-            <label>First Name <span class="req">*</span></label>
-            <input type="text" id="f-firstname" placeholder="e.g. Juan" />
-          </div>
-          <div class="field">
-            <label>Last Name <span class="req">*</span></label>
-            <input type="text" id="f-lastname" placeholder="e.g. dela Cruz" />
-          </div>
-        </div>
-        <div class="field">
-          <label>College / Department <span class="req">*</span></label>
-          <select id="f-college">
-            <option value="" disabled selected>Select your college or department</option>
-            <option value="CAS">CAS – College of Arts and Sciences</option>
-            <option value="CBE">CBE – College of Business and Entrepreneurship</option>
-            <option value="CEd">CEd – College of Education</option>
-            <option value="CEng">CEng – College of Engineering</option>
-            <option value="CITE">CITE – College of Information Technology and Engineering</option>
-            <option value="CN">CN – College of Nursing</option>
-            <option value="CPT">CPT – College of Physical Therapy</option>
-            <option value="SHS">SHS – Senior High School</option>
-            <option value="Staff / Admin">Staff / Admin</option>
-          </select>
+        <div class="visitor-info" id="visitor-info" style="background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-bottom: 14px;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;">Visitor</div>
+          <div style="font-size: 14px; font-weight: 600; color: var(--text);" id="display-name">—</div>
+          <div style="font-size: 12.5px; color: var(--muted); margin-top: 2px;" id="display-college">—</div>
         </div>
         <div class="field">
           <label>Reason for Visit <span class="req">*</span></label>
@@ -261,6 +241,8 @@
       setTimeout(function() { window.location.href = 'admin.html'; }, 300);
     }
 
+    var profileData = {};
+
     async function init() {
       var sessionResult = await db.auth.getSession();
       var session = sessionResult.data.session;
@@ -278,20 +260,11 @@
       document.getElementById('greeting-text').textContent = 'Hello, ' + name + ' 👋';
       document.getElementById('greeting').classList.add('visible');
 
-      if (profile && profile.full_name) {
-        var parts = profile.full_name.trim().split(' ');
-        document.getElementById('f-firstname').value = parts[0] || '';
-        document.getElementById('f-lastname').value  = parts.slice(1).join(' ') || '';
-      }
+      profileData.fullName = (profile && profile.full_name) ? profile.full_name : '';
+      profileData.college  = (profile && profile.college)   ? profile.college   : '';
 
-      if (profile && profile.college) {
-        var sel = document.getElementById('f-college');
-        for (var i = 0; i < sel.options.length; i++) {
-          if (sel.options[i].value === profile.college || sel.options[i].value.startsWith(profile.college)) {
-            sel.selectedIndex = i; break;
-          }
-        }
-      }
+      document.getElementById('display-name').textContent   = profileData.fullName || '—';
+      document.getElementById('display-college').textContent = profileData.college  || '—';
 
       if (profile && (profile.role === 'faculty' || profile.role === 'staff')) {
         isEmployee = true;
@@ -302,14 +275,11 @@
     }
 
     async function submitLog() {
-      var firstName = document.getElementById('f-firstname').value.trim();
-      var lastName  = document.getElementById('f-lastname').value.trim();
-      var college   = document.getElementById('f-college').value;
-      var reason    = document.getElementById('f-reason').value;
+      var reason = document.getElementById('f-reason').value;
+      if (!reason) { showToast('Please select a reason for your visit.', true); return; }
 
-      if (!firstName || !lastName) { showToast('Please enter your full name.', true); return; }
-      if (!college)  { showToast('Please select your college or department.', true); return; }
-      if (!reason)   { showToast('Please select a reason for your visit.', true); return; }
+      var nameParts = profileData.fullName.trim().split(' ');
+      var firstName = nameParts[0] || 'User';
 
       var btn = document.getElementById('submit-btn');
       btn.disabled = true; btn.textContent = 'Logging visit…';
@@ -317,7 +287,7 @@
       var res = await db.from('visitor_logs').insert({
         visited_at:  new Date().toISOString(),
         reason:      reason,
-        college:     college,
+        college:     profileData.college,
         is_employee: isEmployee
       });
 
