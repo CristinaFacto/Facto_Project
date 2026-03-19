@@ -35,6 +35,46 @@
     .btn-outline { padding: 8px 20px; background: transparent; border: 1px solid rgba(255,255,255,0.18); text-decoration: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.65); cursor: pointer; transition: border-color .2s, color .2s; }
     .btn-outline:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
 
+    /* toggle switch */
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .toggle-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .toggle-switch {
+      width: 42px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      position: relative;
+      transition: background 0.25s, border-color 0.25s;
+      cursor: pointer;
+    }
+    .toggle-switch.on {
+      background: var(--green);
+      border-color: var(--green);
+    }
+    .toggle-knob {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      transition: left 0.25s;
+    }
+    .toggle-switch.on .toggle-knob {
+      left: 21px;
+    }
+
     .container { max-width: 1100px; margin: 0 auto; padding: 36px 24px; }
     .page-title { margin-bottom: 32px; }
     .page-title h1 { font-family: 'DM Serif Display', serif; font-size: 32px; color: #fff; margin-bottom: 4px; }
@@ -78,7 +118,7 @@
     .toast.show { transform: translateX(-50%) translateY(0); }
     .toast.error { background: #3a1b1b; border-color: #c0392b; }
 
-    /* ── VISITOR STATS ── */
+    /* visitor stats */
     .vis-controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; }
     .ctrl-group { display: flex; flex-direction: column; gap: 6px; min-width: 150px; }
     .ctrl-group label { font-size: 10.5px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
@@ -150,11 +190,17 @@
     <span class="nav-title">NEU <span>Library</span></span>
   </a>
   <div class="nav-right">
-  <span class="admin-tag">Admin</span>
-  <a href="homepage.html" class="btn-outline">👤 User View</a>
-  <button class="btn-outline" onclick="handleLogout()">Log Out</button>
-</div>
+    <span class="admin-tag">Admin</span>
+    <label class="toggle-wrap" title="Toggle User View">
+      <span class="toggle-label">User View</span>
+      <div class="toggle-switch" id="user-view-toggle" onclick="toggleUserView(this)">
+        <div class="toggle-knob"></div>
+      </div>
+    </label>
+    <button class="btn-outline" onclick="handleLogout()">Log Out</button>
+  </div>
 </nav>
+
 <div class="container">
 
   <div class="page-title">
@@ -279,6 +325,15 @@
   var toastTimer;
 
   var BAR_COLORS = ['#4caf80','#90caf9','#ce93d8','#ffb74d','#80cbc4','#ffe082','#ef9a9a','#a5d6a7','#f48fb1','#b0bec5'];
+
+  function toggleUserView(el) {
+    el.classList.toggle('on');
+    if (el.classList.contains('on')) {
+      setTimeout(function() {
+        window.location.href = 'homepage.html';
+      }, 300);
+    }
+  }
 
   function toast(msg, isErr) {
     var t = document.getElementById('toast');
