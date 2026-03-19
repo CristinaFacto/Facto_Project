@@ -519,10 +519,6 @@
           <option value="student">Students Only</option>
         </select>
       </div>
-      <div class="ctrl-group" style="justify-content:flex-end;">
-        <label>&nbsp;</label>
-        <button onclick="resetFilters()" style="padding:8px 16px; background:#fee2e2; border:1px solid #fca5a5; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:12.5px; font-weight:600; color:#dc2626; cursor:pointer;">✕ Reset Filters</button>
-      </div>
     </div>
 
     <div class="vis-stats" id="vis-stat-cards">
@@ -739,13 +735,6 @@
     if (!entries.length) return '<div class="breakdown-card"><div class="bc-head"><span class="bc-icon">'+icon+'</span>'+title+'</div><div class="breakdown-list"><div class="no-data-msg" style="padding:20px">No data.</div></div></div>';
     var rows=entries.map(function(e,i){ var pct=Math.round((e[1]/max)*100); return '<div class="bd-row"><div class="bd-label">'+(e[0]||'Unknown')+'</div><div class="bd-bar-wrap"><div class="bd-bar" style="width:'+pct+'%;background:'+BAR_COLORS[i%BAR_COLORS.length]+'"></div></div><div class="bd-count">'+e[1]+'</div></div>'; }).join('');
     return '<div class="breakdown-card"><div class="bc-head"><span class="bc-icon">'+icon+'</span>'+title+'</div><div class="breakdown-list">'+rows+'</div></div>';
-  }
-
-  function resetFilters() {
-    document.getElementById('vis-reason').value  = '';
-    document.getElementById('vis-college').value = '';
-    document.getElementById('vis-emptype').value = '';
-    applyFilters();
   }
 
   function resetCustom() {
