@@ -28,6 +28,13 @@
       color: var(--text);
     }
 
+    .bg-image {
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url('https://media.licdn.com/dms/image/v2/C561BAQGUxB_pssZkJA/company-background_10000/company-background_10000/0/1591598531597/new_era_university_official_cover?e=2147483647&v=beta&t=F_JgSz6bKmQ4QdmSivXkthtoQ-7j0KNvpoWiwut8y8A');
+      background-size: cover; background-position: center;
+      filter: brightness(0.13);
+    }
+
     /* ── Navbar ── */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; height: 56px;
@@ -84,6 +91,7 @@
       min-height: calc(100vh - 56px);
       display: flex; align-items: center; justify-content: center;
       padding: 24px;
+      position: relative; z-index: 1;
     }
 
     .main-content { text-align: center; }
@@ -99,31 +107,31 @@
     .school-label {
       font-size: 11px; font-weight: 700;
       letter-spacing: 2px; text-transform: uppercase;
-      color: var(--green); margin-bottom: 14px;
+      color: var(--green-light); margin-bottom: 14px;
     }
 
     .main-title {
       font-size: clamp(28px, 5vw, 50px);
       font-weight: 700;
-      color: var(--text);
+      color: #fff;
       line-height: 1.15; margin-bottom: 10px;
     }
 
-    .main-title em { font-style: italic; color: var(--green); }
+    .main-title em { font-style: italic; color: var(--green-light); }
 
     .school-year {
       font-size: 13.5px; font-weight: 400;
-      color: var(--muted); letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.4); letter-spacing: 0.5px;
       margin-bottom: 28px;
     }
 
     .greeting {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #e8f5e9;
-      border: 1px solid #c8e6c9;
+      background: rgba(76,175,128,0.12);
+      border: 1px solid rgba(76,175,128,0.25);
       border-radius: 20px; padding: 8px 18px;
       font-size: 13px; font-weight: 600;
-      color: var(--green);
+      color: var(--green-light);
       opacity: 0; transition: opacity .4s;
     }
     .greeting.visible { opacity: 1; }
@@ -299,6 +307,8 @@
   </style>
 </head>
 <body>
+
+  <div class="bg-image"></div>
 
   <nav class="navbar">
     <a class="nav-brand" href="#">
