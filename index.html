@@ -4,83 +4,86 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEU Library - Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --green: #2e7d52;
-      --green-dark: #256645;
-      --blue: #42a5f5;
-      --card-bg: #0e1f33;
-      --input-bg: rgba(255,255,255,0.07);
-      --input-border: rgba(255,255,255,0.14);
-      --gray-text: rgba(255,255,255,0.48);
+      --green-dark: #1f5c3a;
+      --green-light: #4caf80;
+      --white: #ffffff;
+      --bg: #f5f7fa;
+      --text: #1a2332;
+      --muted: #7b8fa6;
+      --border: #e4e9f0;
+      --input-bg: #f8fafc;
     }
 
-    body { font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #081525; }
+    body { font-family: 'DM Sans', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg); }
 
     .bg-overlay { position: fixed; inset: 0; z-index: 0; background-image: url('https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/477579626_122108352272743934_80451274266931311_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=2a1932&_nc_eui2=AeFyZwIwgtViJCMy2J6O7hmfmfYDj1U4U5CZ9gOPVThTkCzSwUgeI6I9R9NPckGCkFdAtUbbWy5Vrl0Fce6mrFMe&_nc_ohc=d46thpZOUxAQ7kNvwHwcinm&_nc_oc=Adl0xD0B5Z7G0rMyRnEVR2aOJLhQTnIfgITEM2b5ifXYZ8W9zUvSk8GKMTbqY8lPCH8&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=TXQM_neduF7SDoxkA6-vog&_nc_ss=8&oh=00_AfxbLy76P_6rWbjToop7NR1I6QUi-BUWsLtik-3wfbxjZQ&oe=69BBD6BC'); background-size: cover; background-position: center; filter: brightness(0.30); }
 
-    .card { position: relative; z-index: 10; width: min(440px, 92vw); background: var(--card-bg); border-radius: 12px; padding: 36px 38px; border: 1px solid rgba(255,255,255,0.07); }
+    .card { position: relative; z-index: 10; width: min(440px, 92vw); background: var(--white); border-radius: 16px; padding: 36px 38px; border: 1px solid var(--border); }
 
-    .brand { display: flex; align-items: center; gap: 11px; margin-bottom: 26px; }
-    .brand-logo { width: 40px; height: 40px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+    .brand { display: flex; align-items: center; gap: 11px; margin-bottom: 24px; }
+    .brand-logo { width: 38px; height: 38px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
     .brand-logo img { width: 100%; height: 100%; object-fit: contain; }
-    .brand-text { font-size: 14px; font-weight: 600; color: #fff; line-height: 1.3; }
-    .brand-text span { display: block; font-size: 10.5px; font-weight: 400; color: var(--gray-text); letter-spacing: 0.8px; text-transform: uppercase; }
+    .brand-text { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .brand-text span { display: block; font-size: 10.5px; font-weight: 500; color: var(--muted); letter-spacing: 0.8px; text-transform: uppercase; }
 
-    .divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 24px; }
+    .divider { height: 1px; background: var(--border); margin-bottom: 22px; }
 
-    .tab-row { display: flex; border-bottom: 1px solid rgba(255,255,255,0.10); margin-bottom: 24px; }
-    .tab-btn { flex: 1; padding: 9px 0; text-align: center; font-size: 13.5px; font-weight: 500; color: var(--gray-text); cursor: pointer; border: none; background: transparent; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s, border-color 0.2s; }
-    .tab-btn.active { color: #fff; border-bottom-color: var(--green); }
-    .tab-btn:hover:not(.active) { color: rgba(255,255,255,0.70); }
+    .tab-row { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 24px; }
+    .tab-btn { flex: 1; padding: 9px 0; text-align: center; font-size: 13.5px; font-weight: 600; color: var(--muted); cursor: pointer; border: none; background: transparent; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.2s, border-color 0.2s; font-family: 'DM Sans', sans-serif; }
+    .tab-btn.active { color: var(--green); border-bottom-color: var(--green); }
+    .tab-btn:hover:not(.active) { color: var(--text); }
 
     .form-panel { display: none; flex-direction: column; }
     .form-panel.active { display: flex; }
 
-    .form-heading { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .form-note { font-size: 12.5px; color: var(--gray-text); margin-bottom: 22px; }
-    .form-note a { color: var(--blue); text-decoration: none; font-weight: 500; }
+    .form-heading { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .form-note { font-size: 12.5px; color: var(--muted); margin-bottom: 22px; }
+    .form-note a { color: var(--green); text-decoration: none; font-weight: 600; }
+    .form-note a:hover { color: var(--green-dark); }
 
-    .field { display: flex; flex-direction: column; margin-bottom: 16px; }
-    .field label { font-size: 11px; font-weight: 500; color: var(--gray-text); letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 6px; }
-    .field input, .field select { background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 7px; padding: 10px 13px; font-size: 13.5px; color: #fff; font-family: 'Inter', sans-serif; outline: none; -webkit-appearance: none; width: 100%; transition: border-color 0.18s; }
-    .field select option { background: #0e1f33; color: #fff; }
-    .field select optgroup { background: #0e1f33; color: rgba(255,255,255,0.60); font-style: normal; font-weight: 600; }
-    .field input::placeholder { color: rgba(255,255,255,0.22); }
-    .field input:focus, .field select:focus { border-color: rgba(255,255,255,0.35); }
+    .field { display: flex; flex-direction: column; margin-bottom: 14px; }
+    .field label { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+    .field input, .field select { background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 13px; font-size: 13.5px; color: var(--text); font-family: 'DM Sans', sans-serif; outline: none; -webkit-appearance: none; width: 100%; transition: border-color 0.18s; }
+    .field select option { background: #fff; color: var(--text); }
+    .field select optgroup { background: #fff; color: var(--muted); font-style: normal; font-weight: 700; }
+    .field input::placeholder { color: #94a3b8; }
+    .field input:focus, .field select:focus { border-color: var(--green-light); background: #fff; }
 
     .pw-field { position: relative; }
     .pw-field input { padding-right: 48px; }
-    .show-pw { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.38); font-size: 11px; font-family: 'Inter', sans-serif; font-weight: 500; padding: 0; line-height: 1; }
-    .show-pw:hover { color: rgba(255,255,255,0.70); }
+    .show-pw { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--muted); font-size: 11px; font-family: 'DM Sans', sans-serif; font-weight: 600; padding: 0; line-height: 1; }
+    .show-pw:hover { color: var(--text); }
 
     .select-field { position: relative; }
-    .select-field::after { content: '▾'; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.38); font-size: 12px; pointer-events: none; }
+    .select-field::after { content: '▾'; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 12px; pointer-events: none; }
     .select-field select { width: 100%; cursor: pointer; padding-right: 28px; }
 
-    .role-title { font-size: 11px; font-weight: 500; color: var(--gray-text); letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 7px; }
-    .role-group { display: flex; gap: 8px; margin-bottom: 16px; }
-    .role-option { flex: 1; padding: 9px 6px; background: transparent; border: 1px solid var(--input-border); border-radius: 7px; font-size: 12.5px; font-weight: 500; font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.42); cursor: pointer; transition: border-color 0.18s, color 0.18s; }
-    .role-option.selected { border-color: var(--green); color: #4caf80; }
+    .role-title { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 7px; }
+    .role-group { display: flex; gap: 8px; margin-bottom: 14px; }
+    .role-option { flex: 1; padding: 9px 6px; background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; color: var(--muted); cursor: pointer; transition: border-color 0.18s, color 0.18s, background 0.18s; }
+    .role-option.selected { border-color: var(--green-light); color: var(--green); background: #f0fdf4; }
 
-    .terms-row { display: flex; align-items: center; gap: 9px; margin-bottom: 20px; }
+    .terms-row { display: flex; align-items: center; gap: 9px; margin-bottom: 18px; }
     .terms-row input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; }
-    .terms-row label { font-size: 12px; color: rgba(255,255,255,0.50); cursor: pointer; }
-    .terms-row a { color: var(--blue); text-decoration: none; }
+    .terms-row label { font-size: 12px; color: var(--muted); cursor: pointer; }
+    .terms-row a { color: var(--green); text-decoration: none; font-weight: 600; }
 
-    .forgot-link { text-align: right; margin-bottom: 16px; }
-    .forgot-link a { font-size: 12px; color: var(--blue); text-decoration: none; }
+    .forgot-link { text-align: right; margin-bottom: 14px; }
+    .forgot-link a { font-size: 12px; color: var(--green); text-decoration: none; font-weight: 500; }
 
-    .submit-btn { width: 100%; padding: 11px; background: var(--green); border: none; border-radius: 7px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #fff; cursor: pointer; transition: background 0.18s, opacity 0.18s; }
+    .submit-btn { width: 100%; padding: 12px; background: var(--green); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; color: #fff; cursor: pointer; transition: background 0.18s; }
     .submit-btn:hover { background: var(--green-dark); }
     .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
-    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(70px); background: #1b3a28; border: 1px solid var(--green); color: #fff; padding: 11px 24px; border-radius: 7px; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px; transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); z-index: 999; white-space: nowrap; }
-    .toast.error { background: #3a1b1b; border-color: #c0392b; }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(70px); background: var(--text); color: #fff; padding: 11px 24px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px; transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); z-index: 999; white-space: nowrap; }
+    .toast.error { background: #dc2626; }
     .toast.show { transform: translateX(-50%) translateY(0); }
 
     @media (max-width: 480px) { .card { padding: 28px 20px; } }
@@ -205,7 +208,6 @@
     var supaUrl = 'https://fqdlpskyavrsoyjbvksi.supabase.co';
     var supaKey = 'sb_publishable_nAdhpbEdXTnEqaRv2JAzvg_5k_KUPGP';
     var db = supabase.createClient(supaUrl, supaKey);
-
     var toastTimer;
 
     (async function checkSession() {
@@ -295,17 +297,13 @@
       var email    = document.getElementById('login-email').value.trim();
       var password = document.getElementById('login-pw').value;
       if (!email || !password) { showToast('Please fill in all fields.', true); return; }
-
       setBtn('login-btn', true, 'Signing in...');
       var result = await db.auth.signInWithPassword({ email: email, password: password });
       setBtn('login-btn', false, 'Log In');
-
       if (result.error) { showToast(result.error.message, true); return; }
-
       showToast('Logged in successfully!');
       var profileResult = await db.from('profiles').select('role').eq('id', result.data.user.id).single();
       var userRole = profileResult.data ? profileResult.data.role : null;
-
       setTimeout(function() {
         window.location.href = (userRole === 'admin') ? 'admin.html' : 'homepage.html';
       }, 1500);
@@ -313,7 +311,6 @@
 
     async function doRegister() {
       if (!document.getElementById('terms').checked) { showToast('Please agree to the Terms and Conditions.', true); return; }
-
       var fullName = document.getElementById('reg-name').value.trim();
       var email    = document.getElementById('reg-email').value.trim();
       var college  = document.getElementById('college-select').value;
@@ -321,25 +318,20 @@
       var pw2      = document.getElementById('reg-pw2').value;
       var roleBtn  = document.querySelector('.role-option.selected');
       var role     = roleBtn ? roleBtn.textContent.toLowerCase() : 'student';
-
       if (!fullName || !email || !college || !pw || !pw2) { showToast('Please fill in all fields.', true); return; }
       if (pw !== pw2) { showToast('Passwords do not match.', true); return; }
       if (pw.length < 6) { showToast('Password must be at least 6 characters.', true); return; }
-
       setBtn('reg-btn', true, 'Creating account...');
-
       var signUpResult = await db.auth.signUp({
         email: email,
         password: pw,
         options: { data: { full_name: fullName } }
       });
-
       if (signUpResult.error) {
         setBtn('reg-btn', false, 'Create Account');
         showToast(signUpResult.error.message, true);
         return;
       }
-
       var newUser = signUpResult.data.user;
       if (newUser) {
         await db.from('profiles').upsert({
@@ -349,7 +341,6 @@
           college: college
         });
       }
-
       setBtn('reg-btn', false, 'Create Account');
       showToast('Account created! Check your email to confirm.');
       setTimeout(function() { showTab('login'); }, 2500);
